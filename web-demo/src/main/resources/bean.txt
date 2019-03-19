@@ -1,0 +1,14 @@
+id;
+loginAccount;
+loginPassword;
+userName;
+gender;
+mobile;
+userStatus;
+employStatus;
+organId;
+token;
+tenantId;
+sysId;
+createTime;
+updateTime;
