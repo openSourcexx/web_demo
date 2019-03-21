@@ -18,9 +18,10 @@
 
         <!-- 配置数据库连接信息 -->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/test"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/test?serverTimezone=GMT"
                         userId="root"
                         password="123456">
+            <property name="useInformationSchema" value="true"/>
         </jdbcConnection>
 
 		<!-- 非必需，类型处理器，在数据库类型和java类型之间的转换控制-->
@@ -51,12 +52,15 @@
         </javaClientGenerator>
 
         <!-- 数据库表名及对应的Java模型类名 -->
-        <table tableName="t_user" domainObjectName="User"
+        <table tableName="t_operator_log" domainObjectName="OperatorLog"
                enableCountByExample="true"
                enableUpdateByExample="true"
                enableDeleteByExample="true"
                enableSelectByExample="true"
-               selectByExampleQueryId="false"/>
+               enableSelectByPrimaryKey="true"
+               enableUpdateByPrimaryKey="true"
+               enableDeleteByPrimaryKey="true"
+        selectByExampleQueryId="false"/>
 
     </context>
 

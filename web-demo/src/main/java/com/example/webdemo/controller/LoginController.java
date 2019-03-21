@@ -1,5 +1,6 @@
 package com.example.webdemo.controller;
 
+import com.example.webdemo.auth.BasiLog;
 import com.example.webdemo.beans.User;
 import com.example.webdemo.enums.SysCodeEnum;
 import com.example.webdemo.enums.UserStatusEnum;
@@ -25,16 +26,9 @@ public class LoginController {
     private LoginService loginService;
 
     @RequestMapping("/login")
+    @BasiLog("登陆")
     public BaseVo login(@RequestBody @Valid LoginRequest request) {
-        User u = loginService.login(request);
-        if (u == null) {
-            throw new ServiceException(SysCodeEnum.ACCOUNT_OR_PASSWD_ERR.getCode(),SysCodeEnum.ACCOUNT_OR_PASSWD_ERR.getDesc());
-        }
-
-        if (UserStatusEnum.FREEZE.getCode().equals(u.getUserStatus())) {
-            throw new ServiceException(SysCodeEnum.ACCOUNT_FREEZE.getCode(),SysCodeEnum.ACCOUNT_FREEZE.getDesc());
-        }
-        return new BaseVo(true);
+        return loginService.login(request);
     }
 
     @RequestMapping("/register")

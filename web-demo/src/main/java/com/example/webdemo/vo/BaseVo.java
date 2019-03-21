@@ -17,6 +17,8 @@ public class BaseVo implements Serializable{
 
     private String code;
 
+    private String msg;
+
     private String time = DateUtil.getDate(new Date(),DateUtil.DEFAULT_TIME_FORMAT);
 
     public BaseVo(boolean success) {
@@ -26,6 +28,12 @@ public class BaseVo implements Serializable{
     public BaseVo(boolean success, String code) {
         this.success = success;
         this.code = code;
+    }
+
+    public BaseVo(boolean success, String code, String msg) {
+        this.success = success;
+        this.code = code;
+        this.msg = msg;
     }
 
     public boolean isSuccess() {
@@ -50,5 +58,13 @@ public class BaseVo implements Serializable{
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 }

@@ -7,6 +7,7 @@ import java.util.Arrays;
  * @date 2019/3/21
  */
 public enum SysCodeEnum {
+    DB_ERR("000001","数据库错误"),
     ACCOUNT_OR_PASSWD_ERR("000005","账号或密码错误"),
     ACCOUNT_FREEZE("000006","账号已被停用");
 

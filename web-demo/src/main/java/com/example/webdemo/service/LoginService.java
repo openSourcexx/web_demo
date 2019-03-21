@@ -11,5 +11,5 @@ import javax.validation.Valid; /**
 public interface LoginService {
     BaseVo register(LoginRequest request);
 
-    User login(@Valid LoginRequest request);
+    BaseVo login(@Valid LoginRequest request);
 }
