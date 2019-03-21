@@ -1,6 +1,9 @@
 package com.example.webdemo.controller;
 
 import com.example.webdemo.beans.User;
+import com.example.webdemo.enums.SysCodeEnum;
+import com.example.webdemo.enums.UserStatusEnum;
+import com.example.webdemo.exception.ServiceException;
 import com.example.webdemo.service.LoginService;
 import com.example.webdemo.vo.BaseVo;
 import com.example.webdemo.vo.request.LoginRequest;
@@ -25,7 +28,11 @@ public class LoginController {
     public BaseVo login(@RequestBody @Valid LoginRequest request) {
         User u = loginService.login(request);
         if (u == null) {
-            return new BaseVo(false,"账号或密码错误");
+            throw new ServiceException(SysCodeEnum.ACCOUNT_OR_PASSWD_ERR.getCode(),SysCodeEnum.ACCOUNT_OR_PASSWD_ERR.getDesc());
+        }
+
+        if (UserStatusEnum.FREEZE.getCode().equals(u.getUserStatus())) {
+            throw new ServiceException(SysCodeEnum.ACCOUNT_FREEZE.getCode(),SysCodeEnum.ACCOUNT_FREEZE.getDesc());
         }
         return new BaseVo(true);
     }

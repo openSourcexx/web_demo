@@ -9,15 +9,13 @@ public class User {
 
     private String loginPassword;
 
-    private String userName;
+    private String name;
 
     private String gender;
 
     private String mobile;
 
     private String userStatus;
-
-    private String employStatus;
 
     private Integer organId;
 
@@ -55,12 +53,12 @@ public class User {
         this.loginPassword = loginPassword == null ? null : loginPassword.trim();
     }
 
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
     public String getGender() {
@@ -85,14 +83,6 @@ public class User {
 
     public void setUserStatus(String userStatus) {
         this.userStatus = userStatus == null ? null : userStatus.trim();
-    }
-
-    public String getEmployStatus() {
-        return employStatus;
-    }
-
-    public void setEmployStatus(String employStatus) {
-        this.employStatus = employStatus == null ? null : employStatus.trim();
     }
 
     public Integer getOrganId() {

@@ -5,11 +5,10 @@
     <result column="id" property="id" jdbcType="BIGINT" />
     <result column="login_account" property="loginAccount" jdbcType="VARCHAR" />
     <result column="login_password" property="loginPassword" jdbcType="VARCHAR" />
-    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="gender" property="gender" jdbcType="CHAR" />
     <result column="mobile" property="mobile" jdbcType="VARCHAR" />
     <result column="user_status" property="userStatus" jdbcType="CHAR" />
-    <result column="employ_status" property="employStatus" jdbcType="CHAR" />
     <result column="organ_id" property="organId" jdbcType="INTEGER" />
     <result column="token" property="token" jdbcType="VARCHAR" />
     <result column="tenant_id" property="tenantId" jdbcType="VARCHAR" />
@@ -76,8 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, login_account, login_password, user_name, gender, mobile, user_status, employ_status, 
-    organ_id, token, tenant_id, sys_id, create_time, update_time
+    id, login_account, login_password, name, gender, mobile, user_status, organ_id, token, 
+    tenant_id, sys_id, create_time, update_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.webdemo.beans.UserExample" >
     select
@@ -102,15 +101,15 @@
   </delete>
   <insert id="insert" parameterType="com.example.webdemo.beans.User" >
     insert into t_user (id, login_account, login_password, 
-      user_name, gender, mobile, 
-      user_status, employ_status, organ_id, 
-      token, tenant_id, sys_id, 
-      create_time, update_time)
+      name, gender, mobile, 
+      user_status, organ_id, token, 
+      tenant_id, sys_id, create_time, 
+      update_time)
     values (#{id,jdbcType=BIGINT}, #{loginAccount,jdbcType=VARCHAR}, #{loginPassword,jdbcType=VARCHAR}, 
-      #{userName,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, #{mobile,jdbcType=VARCHAR}, 
-      #{userStatus,jdbcType=CHAR}, #{employStatus,jdbcType=CHAR}, #{organId,jdbcType=INTEGER}, 
-      #{token,jdbcType=VARCHAR}, #{tenantId,jdbcType=VARCHAR}, #{sysId,jdbcType=CHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+      #{name,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{userStatus,jdbcType=CHAR}, #{organId,jdbcType=INTEGER}, #{token,jdbcType=VARCHAR}, 
+      #{tenantId,jdbcType=VARCHAR}, #{sysId,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.example.webdemo.beans.User" >
     insert into t_user
@@ -124,8 +123,8 @@
       <if test="loginPassword != null" >
         login_password,
       </if>
-      <if test="userName != null" >
-        user_name,
+      <if test="name != null" >
+        name,
       </if>
       <if test="gender != null" >
         gender,
@@ -135,9 +134,6 @@
       </if>
       <if test="userStatus != null" >
         user_status,
-      </if>
-      <if test="employStatus != null" >
-        employ_status,
       </if>
       <if test="organId != null" >
         organ_id,
@@ -168,8 +164,8 @@
       <if test="loginPassword != null" >
         #{loginPassword,jdbcType=VARCHAR},
       </if>
-      <if test="userName != null" >
-        #{userName,jdbcType=VARCHAR},
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
       </if>
       <if test="gender != null" >
         #{gender,jdbcType=CHAR},
@@ -179,9 +175,6 @@
       </if>
       <if test="userStatus != null" >
         #{userStatus,jdbcType=CHAR},
-      </if>
-      <if test="employStatus != null" >
-        #{employStatus,jdbcType=CHAR},
       </if>
       <if test="organId != null" >
         #{organId,jdbcType=INTEGER},
@@ -221,8 +214,8 @@
       <if test="record.loginPassword != null" >
         login_password = #{record.loginPassword,jdbcType=VARCHAR},
       </if>
-      <if test="record.userName != null" >
-        user_name = #{record.userName,jdbcType=VARCHAR},
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
       </if>
       <if test="record.gender != null" >
         gender = #{record.gender,jdbcType=CHAR},
@@ -232,9 +225,6 @@
       </if>
       <if test="record.userStatus != null" >
         user_status = #{record.userStatus,jdbcType=CHAR},
-      </if>
-      <if test="record.employStatus != null" >
-        employ_status = #{record.employStatus,jdbcType=CHAR},
       </if>
       <if test="record.organId != null" >
         organ_id = #{record.organId,jdbcType=INTEGER},
@@ -264,11 +254,10 @@
     set id = #{record.id,jdbcType=BIGINT},
       login_account = #{record.loginAccount,jdbcType=VARCHAR},
       login_password = #{record.loginPassword,jdbcType=VARCHAR},
-      user_name = #{record.userName,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
       gender = #{record.gender,jdbcType=CHAR},
       mobile = #{record.mobile,jdbcType=VARCHAR},
       user_status = #{record.userStatus,jdbcType=CHAR},
-      employ_status = #{record.employStatus,jdbcType=CHAR},
       organ_id = #{record.organId,jdbcType=INTEGER},
       token = #{record.token,jdbcType=VARCHAR},
       tenant_id = #{record.tenantId,jdbcType=VARCHAR},
@@ -279,21 +268,45 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-
-  <select id="login" parameterType="com.example.webdemo.beans.User" resultMap="BaseResultMap">
-    select
+  
+  <select id="selectByUser" parameterType="com.example.webdemo.beans.User" resultMap="BaseResultMap">
+    SELECT 
     <include refid="Base_Column_List"/>
-    FROM
+    FROM 
       t_user
     <where>
+      <if test="id != null" >
+        and id = #{id,jdbcType=BIGINT},
+      </if>
       <if test="loginAccount != null" >
-        and login_account = #{loginAccount}
+        and login_account = #{loginAccount,jdbcType=VARCHAR}
       </if>
       <if test="loginPassword != null" >
-        and login_password = #{loginPassword}
+        and login_password = #{loginPassword,jdbcType=VARCHAR}
+      </if>
+      <if test="name != null" >
+        and name = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="gender != null" >
+        and gender = #{gender,jdbcType=CHAR}
       </if>
       <if test="mobile != null" >
-        and mobile = #{mobile}
+        and mobile = #{mobile,jdbcType=VARCHAR}
+      </if>
+      <if test="userStatus != null" >
+        and user_status = #{userStatus,jdbcType=CHAR}
+      </if>
+      <if test="organId != null" >
+        and organ_id = #{organId,jdbcType=INTEGER}
+      </if>
+      <if test="token != null" >
+        and token = #{token,jdbcType=VARCHAR}
+      </if>
+      <if test="tenantId != null" >
+        and tenant_id = #{tenantId,jdbcType=VARCHAR}
+      </if>
+      <if test="sysId != null" >
+        and sys_id = #{sysId,jdbcType=CHAR}
       </if>
     </where>
   </select>

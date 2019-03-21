@@ -35,6 +35,6 @@ public class LoginServiceImpl implements LoginService {
     public User login(@Valid LoginRequest request) {
         User u = new User();
         BeanUtils.copyProperties(request,u);
-        return userMapper.login(u);
+        return userMapper.selectByUser(u);
     }
 }
