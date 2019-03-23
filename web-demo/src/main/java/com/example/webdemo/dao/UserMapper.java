@@ -28,4 +28,6 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     User selectByUser(User u);
+
+    List<User> selectAll();
 }

@@ -1,6 +1,6 @@
 package com.example.webdemo.beans;
 
-import java.util.Date;
+import java.util.*;
 
 public class User {
     private Long id;
@@ -28,6 +28,16 @@ public class User {
     private Date createTime;
 
     private Date updateTime;
+
+    /**
+     * 用户拥有的权限列表1对多
+     */
+    private List<Permission> permissionList = new ArrayList<>();
+
+    /**
+     * 用户可操作的url权限
+     */
+    private Set<Long> permissionUrls = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -131,5 +141,21 @@ public class User {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public List<Permission> getPermissionList() {
+        return permissionList;
+    }
+
+    public void setPermissionList(List<Permission> permissionList) {
+        this.permissionList = permissionList;
+    }
+
+    public Set<Long> getPermissionUrls() {
+        return permissionUrls;
+    }
+
+    public void setPermissionUrls(Set<Long> permissionUrls) {
+        this.permissionUrls = permissionUrls;
     }
 }

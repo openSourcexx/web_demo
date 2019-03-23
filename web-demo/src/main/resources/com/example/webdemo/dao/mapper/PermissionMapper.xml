@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.webdemo.dao.PermissionMapper" >
+  <resultMap id="BaseResultMap" type="com.example.webdemo.beans.Permission" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="permit_name" property="permitName" jdbcType="VARCHAR" />
+    <result column="permit_type" property="permitType" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="permit_code" property="permitCode" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="VARCHAR" />
+    <result column="available" property="available" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, permit_name, permit_type, parent_id, permit_code, url, create_time, update_time, 
+    icon, sort, available
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.webdemo.beans.PermissionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_permission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_permission
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_permission
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.webdemo.beans.PermissionExample" >
+    delete from t_permission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.webdemo.beans.Permission" >
+    insert into t_permission (id, permit_name, permit_type, 
+      parent_id, permit_code, url, 
+      create_time, update_time, icon, 
+      sort, available)
+    values (#{id,jdbcType=BIGINT}, #{permitName,jdbcType=VARCHAR}, #{permitType,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=BIGINT}, #{permitCode,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{icon,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=VARCHAR}, #{available,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.webdemo.beans.Permission" >
+    insert into t_permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="permitName != null" >
+        permit_name,
+      </if>
+      <if test="permitType != null" >
+        permit_type,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="permitCode != null" >
+        permit_code,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="available != null" >
+        available,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="permitName != null" >
+        #{permitName,jdbcType=VARCHAR},
+      </if>
+      <if test="permitType != null" >
+        #{permitType,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="permitCode != null" >
+        #{permitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null" >
+        #{available,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.webdemo.beans.PermissionExample" resultType="java.lang.Integer" >
+    select count(*) from t_permission
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_permission
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.permitName != null" >
+        permit_name = #{record.permitName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.permitType != null" >
+        permit_type = #{record.permitType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentId != null" >
+        parent_id = #{record.parentId,jdbcType=BIGINT},
+      </if>
+      <if test="record.permitCode != null" >
+        permit_code = #{record.permitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url != null" >
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.icon != null" >
+        icon = #{record.icon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sort != null" >
+        sort = #{record.sort,jdbcType=VARCHAR},
+      </if>
+      <if test="record.available != null" >
+        available = #{record.available,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_permission
+    set id = #{record.id,jdbcType=BIGINT},
+      permit_name = #{record.permitName,jdbcType=VARCHAR},
+      permit_type = #{record.permitType,jdbcType=VARCHAR},
+      parent_id = #{record.parentId,jdbcType=BIGINT},
+      permit_code = #{record.permitCode,jdbcType=VARCHAR},
+      url = #{record.url,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      icon = #{record.icon,jdbcType=VARCHAR},
+      sort = #{record.sort,jdbcType=VARCHAR},
+      available = #{record.available,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.webdemo.beans.Permission" >
+    update t_permission
+    <set >
+      <if test="permitName != null" >
+        permit_name = #{permitName,jdbcType=VARCHAR},
+      </if>
+      <if test="permitType != null" >
+        permit_type = #{permitType,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="permitCode != null" >
+        permit_code = #{permitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null" >
+        available = #{available,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.webdemo.beans.Permission" >
+    update t_permission
+    set permit_name = #{permitName,jdbcType=VARCHAR},
+      permit_type = #{permitType,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=BIGINT},
+      permit_code = #{permitCode,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      icon = #{icon,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=VARCHAR},
+      available = #{available,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    SELECT *
+    FROM t_permission
+  </select>
+
+  <!--自关联一对多-->
+  <resultMap id="PermissionMenuResultMap" type="com.example.webdemo.beans.Permission">
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="permit_name" property="permitName" jdbcType="VARCHAR" />
+    <result column="permit_type" property="permitType" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="permit_code" property="permitCode" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="VARCHAR" />
+    <result column="aviable" property="aviable" jdbcType="CHAR" />
+    <collection property="permissionList" ofType="com.example.webdemo.beans.Permission"
+                column="{userId=userId,parentId=id}" select="selectPermissionMenuByUid"/>
+  </resultMap>
+
+  <select id="selectPermissionMenuByUid" resultMap="PermissionMenuResultMap">
+    SELECT DISTINCT p.*,ur.user_id userId from t_permission p
+    left JOIN t_role_permission_relation rp
+    on rp.permission_id = p.id
+    LEFT JOIN t_user_role_relation ur
+    on rp.role_id = ur.role_id
+    where ur.user_id = #{userId} and permit_type = "menu" and p.parent_id = 1
+  </select>
+
+  <select id="selectPermissionMenuByUid2" resultMap="BaseResultMap">
+    SELECT DISTINCT p.*,ur.user_id userId from t_permission p
+    left JOIN t_role_permission_relation rp
+    on rp.permission_id = p.id
+    LEFT JOIN t_user_role_relation ur
+    on rp.role_id = ur.role_id
+    where ur.user_id = #{userId} and permit_type = "menu" and p.parent_id = #{parentId}
+  </select>
+</mapper>
