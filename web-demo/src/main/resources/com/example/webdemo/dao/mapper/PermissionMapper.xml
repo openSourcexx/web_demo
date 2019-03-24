@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.webdemo.dao.PermissionMapper" >
   <resultMap id="BaseResultMap" type="com.example.webdemo.beans.Permission" >
-    <id column="id" property="id" jdbcType="BIGINT" />
+    <id column="id" property="id" jdbcType="INTEGER" />
     <result column="permit_name" property="permitName" jdbcType="VARCHAR" />
     <result column="permit_type" property="permitType" jdbcType="VARCHAR" />
-    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
     <result column="permit_code" property="permitCode" jdbcType="VARCHAR" />
     <result column="url" property="url" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
@@ -90,15 +90,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from t_permission
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_permission
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.example.webdemo.beans.PermissionExample" >
     delete from t_permission
@@ -111,8 +111,8 @@
       parent_id, permit_code, url, 
       create_time, update_time, icon, 
       sort, available)
-    values (#{id,jdbcType=BIGINT}, #{permitName,jdbcType=VARCHAR}, #{permitType,jdbcType=VARCHAR}, 
-      #{parentId,jdbcType=BIGINT}, #{permitCode,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{permitName,jdbcType=VARCHAR}, #{permitType,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=INTEGER}, #{permitCode,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{icon,jdbcType=VARCHAR}, 
       #{sort,jdbcType=VARCHAR}, #{available,jdbcType=CHAR})
   </insert>
@@ -155,7 +155,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=BIGINT},
+        #{id,jdbcType=INTEGER},
       </if>
       <if test="permitName != null" >
         #{permitName,jdbcType=VARCHAR},
@@ -164,7 +164,7 @@
         #{permitType,jdbcType=VARCHAR},
       </if>
       <if test="parentId != null" >
-        #{parentId,jdbcType=BIGINT},
+        #{parentId,jdbcType=INTEGER},
       </if>
       <if test="permitCode != null" >
         #{permitCode,jdbcType=VARCHAR},
@@ -199,7 +199,7 @@
     update t_permission
     <set >
       <if test="record.id != null" >
-        id = #{record.id,jdbcType=BIGINT},
+        id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.permitName != null" >
         permit_name = #{record.permitName,jdbcType=VARCHAR},
@@ -208,7 +208,7 @@
         permit_type = #{record.permitType,jdbcType=VARCHAR},
       </if>
       <if test="record.parentId != null" >
-        parent_id = #{record.parentId,jdbcType=BIGINT},
+        parent_id = #{record.parentId,jdbcType=INTEGER},
       </if>
       <if test="record.permitCode != null" >
         permit_code = #{record.permitCode,jdbcType=VARCHAR},
@@ -238,10 +238,10 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update t_permission
-    set id = #{record.id,jdbcType=BIGINT},
+    set id = #{record.id,jdbcType=INTEGER},
       permit_name = #{record.permitName,jdbcType=VARCHAR},
       permit_type = #{record.permitType,jdbcType=VARCHAR},
-      parent_id = #{record.parentId,jdbcType=BIGINT},
+      parent_id = #{record.parentId,jdbcType=INTEGER},
       permit_code = #{record.permitCode,jdbcType=VARCHAR},
       url = #{record.url,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -263,7 +263,7 @@
         permit_type = #{permitType,jdbcType=VARCHAR},
       </if>
       <if test="parentId != null" >
-        parent_id = #{parentId,jdbcType=BIGINT},
+        parent_id = #{parentId,jdbcType=INTEGER},
       </if>
       <if test="permitCode != null" >
         permit_code = #{permitCode,jdbcType=VARCHAR},
@@ -287,13 +287,13 @@
         available = #{available,jdbcType=CHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.example.webdemo.beans.Permission" >
     update t_permission
     set permit_name = #{permitName,jdbcType=VARCHAR},
       permit_type = #{permitType,jdbcType=VARCHAR},
-      parent_id = #{parentId,jdbcType=BIGINT},
+      parent_id = #{parentId,jdbcType=INTEGER},
       permit_code = #{permitCode,jdbcType=VARCHAR},
       url = #{url,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -301,7 +301,7 @@
       icon = #{icon,jdbcType=VARCHAR},
       sort = #{sort,jdbcType=VARCHAR},
       available = #{available,jdbcType=CHAR}
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 
   <select id="selectAll" resultMap="BaseResultMap">
@@ -310,20 +310,24 @@
   </select>
 
   <!--自关联一对多-->
+  <!--
+    column=左侧的userId和parentId为下一条语句的参数名
+    =右侧为这条语句显示的字段名
+  -->
   <resultMap id="PermissionMenuResultMap" type="com.example.webdemo.beans.Permission">
-    <id column="id" property="id" jdbcType="BIGINT" />
+    <id column="id" property="id" jdbcType="INTEGER" />
     <result column="permit_name" property="permitName" jdbcType="VARCHAR" />
     <result column="permit_type" property="permitType" jdbcType="VARCHAR" />
-    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
     <result column="permit_code" property="permitCode" jdbcType="VARCHAR" />
     <result column="url" property="url" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="icon" property="icon" jdbcType="VARCHAR" />
     <result column="sort" property="sort" jdbcType="VARCHAR" />
-    <result column="aviable" property="aviable" jdbcType="CHAR" />
+    <result column="available" property="available" jdbcType="CHAR" />
     <collection property="permissionList" ofType="com.example.webdemo.beans.Permission"
-                column="{userId=userId,parentId=id}" select="selectPermissionMenuByUid"/>
+                column="{userId=userId,parentId=id}" select="selectPermissionMenuByUid2"/>
   </resultMap>
 
   <select id="selectPermissionMenuByUid" resultMap="PermissionMenuResultMap">
@@ -341,6 +345,6 @@
     on rp.permission_id = p.id
     LEFT JOIN t_user_role_relation ur
     on rp.role_id = ur.role_id
-    where ur.user_id = #{userId} and permit_type = "menu" and p.parent_id = #{parentId}
+    where ur.user_id = #{userId} and permit_type = "menu" and p.parent_id = #{parentId,jdbcType=INTEGER}
   </select>
 </mapper>

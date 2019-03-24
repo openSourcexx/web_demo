@@ -55,7 +55,7 @@ public class BusiAop {
         OperatorLog log = new OperatorLog();
         log.setContent(basiLog.value());
         log.setOperatorName("admin");
-        log.setOperatorId(1L);
+        log.setOperatorId(1);
         try {
             logService.save(log);
         } catch (Exception e) {

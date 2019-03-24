@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.webdemo.dao.UserMapper" >
   <resultMap id="BaseResultMap" type="com.example.webdemo.beans.User" >
-    <id column="id" property="id" jdbcType="BIGINT" />
+    <id column="id" property="id" jdbcType="INTEGER" />
     <result column="login_account" property="loginAccount" jdbcType="VARCHAR" />
     <result column="login_password" property="loginPassword" jdbcType="VARCHAR" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
@@ -12,7 +12,7 @@
     <result column="organ_id" property="organId" jdbcType="INTEGER" />
     <result column="token" property="token" jdbcType="VARCHAR" />
     <result column="tenant_id" property="tenantId" jdbcType="VARCHAR" />
-    <result column="sys_id" property="sysId" jdbcType="CHAR" />
+    <result column="sys_id" property="sysId" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
@@ -83,7 +83,6 @@
     <if test="distinct" >
       distinct
     </if>
-    'false' as QUERYID,
     <include refid="Base_Column_List" />
     from t_user
     <if test="_parameter != null" >
@@ -93,15 +92,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from t_user
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_user
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.example.webdemo.beans.UserExample" >
     delete from t_user
@@ -110,15 +109,15 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.example.webdemo.beans.User" >
-    insert into t_user (id, login_account, login_password,
-      user_name, gender, mobile,
-      user_status, organ_id, token,
-      tenant_id, sys_id, create_time,
+    insert into t_user (id, login_account, login_password, 
+      user_name, gender, mobile, 
+      user_status, organ_id, token, 
+      tenant_id, sys_id, create_time, 
       update_time)
-    values (#{id,jdbcType=BIGINT}, #{loginAccount,jdbcType=VARCHAR}, #{loginPassword,jdbcType=VARCHAR},
-      #{userName,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, #{mobile,jdbcType=VARCHAR},
-      #{userStatus,jdbcType=CHAR}, #{organId,jdbcType=INTEGER}, #{token,jdbcType=VARCHAR},
-      #{tenantId,jdbcType=VARCHAR}, #{sysId,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP},
+    values (#{id,jdbcType=INTEGER}, #{loginAccount,jdbcType=VARCHAR}, #{loginPassword,jdbcType=VARCHAR}, 
+      #{userName,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{userStatus,jdbcType=CHAR}, #{organId,jdbcType=INTEGER}, #{token,jdbcType=VARCHAR}, 
+      #{tenantId,jdbcType=VARCHAR}, #{sysId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.example.webdemo.beans.User" >
@@ -166,7 +165,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=BIGINT},
+        #{id,jdbcType=INTEGER},
       </if>
       <if test="loginAccount != null" >
         #{loginAccount,jdbcType=VARCHAR},
@@ -196,7 +195,7 @@
         #{tenantId,jdbcType=VARCHAR},
       </if>
       <if test="sysId != null" >
-        #{sysId,jdbcType=CHAR},
+        #{sysId,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
@@ -216,7 +215,7 @@
     update t_user
     <set >
       <if test="record.id != null" >
-        id = #{record.id,jdbcType=BIGINT},
+        id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.loginAccount != null" >
         login_account = #{record.loginAccount,jdbcType=VARCHAR},
@@ -246,7 +245,7 @@
         tenant_id = #{record.tenantId,jdbcType=VARCHAR},
       </if>
       <if test="record.sysId != null" >
-        sys_id = #{record.sysId,jdbcType=CHAR},
+        sys_id = #{record.sysId,jdbcType=VARCHAR},
       </if>
       <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -261,7 +260,7 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update t_user
-    set id = #{record.id,jdbcType=BIGINT},
+    set id = #{record.id,jdbcType=INTEGER},
       login_account = #{record.loginAccount,jdbcType=VARCHAR},
       login_password = #{record.loginPassword,jdbcType=VARCHAR},
       user_name = #{record.userName,jdbcType=VARCHAR},
@@ -271,7 +270,7 @@
       organ_id = #{record.organId,jdbcType=INTEGER},
       token = #{record.token,jdbcType=VARCHAR},
       tenant_id = #{record.tenantId,jdbcType=VARCHAR},
-      sys_id = #{record.sysId,jdbcType=CHAR},
+      sys_id = #{record.sysId,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
@@ -309,7 +308,7 @@
         tenant_id = #{tenantId,jdbcType=VARCHAR},
       </if>
       <if test="sysId != null" >
-        sys_id = #{sysId,jdbcType=CHAR},
+        sys_id = #{sysId,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -318,7 +317,7 @@
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.example.webdemo.beans.User" >
     update t_user
@@ -331,10 +330,10 @@
       organ_id = #{organId,jdbcType=INTEGER},
       token = #{token,jdbcType=VARCHAR},
       tenant_id = #{tenantId,jdbcType=VARCHAR},
-      sys_id = #{sysId,jdbcType=CHAR},
+      sys_id = #{sysId,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 
   <select id="selectByUser" parameterType="com.example.webdemo.beans.User" resultMap="BaseResultMap">
@@ -344,7 +343,7 @@
     t_user
     <where>
       <if test="id != null" >
-        and id = #{id,jdbcType=BIGINT}
+        and id = #{id,jdbcType=INTEGER}
       </if>
       <if test="loginAccount != null" >
         and login_account = #{loginAccount,jdbcType=VARCHAR}
@@ -379,11 +378,10 @@
     </where>
   </select>
 
-  <select id="selectAll" resultMap="BaseResultMap">
+  <select id="listAll" resultMap="BaseResultMap">
     SELECT
-      <include refid="Base_Column_List"/>
+    <include refid="Base_Column_List"/>
     FROM
-      t_user
+    t_user
   </select>
-
 </mapper>

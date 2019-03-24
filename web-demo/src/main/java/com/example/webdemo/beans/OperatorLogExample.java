@@ -115,52 +115,52 @@ public class OperatorLogExample {
             return (Criteria) this;
         }
 
-        public Criteria andIdEqualTo(Long value) {
+        public Criteria andIdEqualTo(Integer value) {
             addCriterion("id =", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotEqualTo(Long value) {
+        public Criteria andIdNotEqualTo(Integer value) {
             addCriterion("id <>", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThan(Long value) {
+        public Criteria andIdGreaterThan(Integer value) {
             addCriterion("id >", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThanOrEqualTo(Long value) {
+        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("id >=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThan(Long value) {
+        public Criteria andIdLessThan(Integer value) {
             addCriterion("id <", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThanOrEqualTo(Long value) {
+        public Criteria andIdLessThanOrEqualTo(Integer value) {
             addCriterion("id <=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdIn(List<Long> values) {
+        public Criteria andIdIn(List<Integer> values) {
             addCriterion("id in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotIn(List<Long> values) {
+        public Criteria andIdNotIn(List<Integer> values) {
             addCriterion("id not in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdBetween(Long value1, Long value2) {
+        public Criteria andIdBetween(Integer value1, Integer value2) {
             addCriterion("id between", value1, value2, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotBetween(Long value1, Long value2) {
+        public Criteria andIdNotBetween(Integer value1, Integer value2) {
             addCriterion("id not between", value1, value2, "id");
             return (Criteria) this;
         }
@@ -175,52 +175,52 @@ public class OperatorLogExample {
             return (Criteria) this;
         }
 
-        public Criteria andOperatorIdEqualTo(Long value) {
+        public Criteria andOperatorIdEqualTo(Integer value) {
             addCriterion("operator_id =", value, "operatorId");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorIdNotEqualTo(Long value) {
+        public Criteria andOperatorIdNotEqualTo(Integer value) {
             addCriterion("operator_id <>", value, "operatorId");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorIdGreaterThan(Long value) {
+        public Criteria andOperatorIdGreaterThan(Integer value) {
             addCriterion("operator_id >", value, "operatorId");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorIdGreaterThanOrEqualTo(Long value) {
+        public Criteria andOperatorIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("operator_id >=", value, "operatorId");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorIdLessThan(Long value) {
+        public Criteria andOperatorIdLessThan(Integer value) {
             addCriterion("operator_id <", value, "operatorId");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorIdLessThanOrEqualTo(Long value) {
+        public Criteria andOperatorIdLessThanOrEqualTo(Integer value) {
             addCriterion("operator_id <=", value, "operatorId");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorIdIn(List<Long> values) {
+        public Criteria andOperatorIdIn(List<Integer> values) {
             addCriterion("operator_id in", values, "operatorId");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorIdNotIn(List<Long> values) {
+        public Criteria andOperatorIdNotIn(List<Integer> values) {
             addCriterion("operator_id not in", values, "operatorId");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorIdBetween(Long value1, Long value2) {
+        public Criteria andOperatorIdBetween(Integer value1, Integer value2) {
             addCriterion("operator_id between", value1, value2, "operatorId");
             return (Criteria) this;
         }
 
-        public Criteria andOperatorIdNotBetween(Long value1, Long value2) {
+        public Criteria andOperatorIdNotBetween(Integer value1, Integer value2) {
             addCriterion("operator_id not between", value1, value2, "operatorId");
             return (Criteria) this;
         }
@@ -482,76 +482,6 @@ public class OperatorLogExample {
 
         public Criteria andUpdateTimeNotBetween(Date value1, Date value2) {
             addCriterion("update_time not between", value1, value2, "updateTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andIpIsNull() {
-            addCriterion("ip is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIpIsNotNull() {
-            addCriterion("ip is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIpEqualTo(String value) {
-            addCriterion("ip =", value, "ip");
-            return (Criteria) this;
-        }
-
-        public Criteria andIpNotEqualTo(String value) {
-            addCriterion("ip <>", value, "ip");
-            return (Criteria) this;
-        }
-
-        public Criteria andIpGreaterThan(String value) {
-            addCriterion("ip >", value, "ip");
-            return (Criteria) this;
-        }
-
-        public Criteria andIpGreaterThanOrEqualTo(String value) {
-            addCriterion("ip >=", value, "ip");
-            return (Criteria) this;
-        }
-
-        public Criteria andIpLessThan(String value) {
-            addCriterion("ip <", value, "ip");
-            return (Criteria) this;
-        }
-
-        public Criteria andIpLessThanOrEqualTo(String value) {
-            addCriterion("ip <=", value, "ip");
-            return (Criteria) this;
-        }
-
-        public Criteria andIpLike(String value) {
-            addCriterion("ip like", value, "ip");
-            return (Criteria) this;
-        }
-
-        public Criteria andIpNotLike(String value) {
-            addCriterion("ip not like", value, "ip");
-            return (Criteria) this;
-        }
-
-        public Criteria andIpIn(List<String> values) {
-            addCriterion("ip in", values, "ip");
-            return (Criteria) this;
-        }
-
-        public Criteria andIpNotIn(List<String> values) {
-            addCriterion("ip not in", values, "ip");
-            return (Criteria) this;
-        }
-
-        public Criteria andIpBetween(String value1, String value2) {
-            addCriterion("ip between", value1, value2, "ip");
-            return (Criteria) this;
-        }
-
-        public Criteria andIpNotBetween(String value1, String value2) {
-            addCriterion("ip not between", value1, value2, "ip");
             return (Criteria) this;
         }
     }

@@ -3,7 +3,7 @@ package com.example.webdemo.beans;
 import java.util.*;
 
 public class User {
-    private Long id;
+    private Integer id;
 
     private String loginAccount;
 
@@ -30,20 +30,36 @@ public class User {
     private Date updateTime;
 
     /**
-     * 用户拥有的权限列表1对多
+     * 用户拥有权限1对多
      */
     private List<Permission> permissionList = new ArrayList<>();
 
     /**
-     * 用户可操作的url权限
+     * 用户可操作url链接
      */
-    private Set<Long> permissionUrls = new HashSet<>();
+    private Set<String> urlList = new HashSet<>();
 
-    public Long getId() {
+    public List<Permission> getPermissionList() {
+        return permissionList;
+    }
+
+    public void setPermissionList(List<Permission> permissionList) {
+        this.permissionList = permissionList;
+    }
+
+    public Set<String> getUrlList() {
+        return urlList;
+    }
+
+    public void setUrlList(Set<String> urlList) {
+        this.urlList = urlList;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -141,21 +157,5 @@ public class User {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    public List<Permission> getPermissionList() {
-        return permissionList;
-    }
-
-    public void setPermissionList(List<Permission> permissionList) {
-        this.permissionList = permissionList;
-    }
-
-    public Set<Long> getPermissionUrls() {
-        return permissionUrls;
-    }
-
-    public void setPermissionUrls(Set<Long> permissionUrls) {
-        this.permissionUrls = permissionUrls;
     }
 }

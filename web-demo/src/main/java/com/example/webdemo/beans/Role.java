@@ -3,7 +3,7 @@ package com.example.webdemo.beans;
 import java.util.Date;
 
 public class Role {
-    private Long id;
+    private Integer id;
 
     private String roleName;
 
@@ -13,11 +13,11 @@ public class Role {
 
     private Date updateTime;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

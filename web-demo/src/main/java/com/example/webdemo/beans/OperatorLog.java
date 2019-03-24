@@ -3,9 +3,9 @@ package com.example.webdemo.beans;
 import java.util.Date;
 
 public class OperatorLog {
-    private Long id;
+    private Integer id;
 
-    private Long operatorId;
+    private Integer operatorId;
 
     private String operatorName;
 
@@ -15,21 +15,19 @@ public class OperatorLog {
 
     private Date updateTime;
 
-    private String ip;
-
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Long getOperatorId() {
+    public Integer getOperatorId() {
         return operatorId;
     }
 
-    public void setOperatorId(Long operatorId) {
+    public void setOperatorId(Integer operatorId) {
         this.operatorId = operatorId;
     }
 
@@ -63,13 +61,5 @@ public class OperatorLog {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    public String getIp() {
-        return ip;
-    }
-
-    public void setIp(String ip) {
-        this.ip = ip == null ? null : ip.trim();
     }
 }

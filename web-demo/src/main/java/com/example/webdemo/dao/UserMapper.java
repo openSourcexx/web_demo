@@ -13,21 +13,34 @@ public interface UserMapper {
 
     int deleteByExample(UserExample example);
 
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(User record);
 
     int insertSelective(User record);
 
     List<User> selectByExample(UserExample example);
 
-    User selectByPrimaryKey(Long id);
+    User selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
+
+    int updateByExample(@Param("record") User record, @Param("example") UserExample example);
 
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
 
+    /**
+     * 条件查询
+     * @param u
+     * @return
+     */
     User selectByUser(User u);
 
-    List<User> selectAll();
+    /**
+     * 查询所有用户
+     * @return
+     */
+    List<User> listAll();
 }

@@ -10,5 +10,5 @@ public interface RolePermissionRelationService {
      * @param roleId
      * @return
      */
-    List<RolePermissionRelation> queryByRoleId(Long roleId);
+    List<RolePermissionRelation> queryByRoleId(Integer roleId);
 }

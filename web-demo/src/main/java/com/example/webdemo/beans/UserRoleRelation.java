@@ -3,37 +3,37 @@ package com.example.webdemo.beans;
 import java.util.Date;
 
 public class UserRoleRelation {
-    private Long id;
+    private Integer id;
 
-    private Long userId;
+    private Integer userId;
 
-    private Long roleId;
+    private Integer roleId;
 
     private Date createTime;
 
     private Date updateTime;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Long getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
-    public Long getRoleId() {
+    public Integer getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(Long roleId) {
+    public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
 

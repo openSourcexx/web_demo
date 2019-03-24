@@ -1,19 +1,16 @@
 package com.example.webdemo.beans;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Permission {
-    private Long id;
+    private Integer id;
 
     private String permitName;
 
     private String permitType;
 
-    private Long parentId;
+    private Integer parentId;
 
     private String permitCode;
 
@@ -29,10 +26,10 @@ public class Permission {
 
     private String available;
 
-    // 自关联一对多
-    // 这个注解必须添加，为了避免递归parse导致栈溢出
-    @JsonBackReference
-    private List<Permission> permissionList = new ArrayList<>();
+    /**
+     * 自关联1对多
+     */
+    private List<Permission> permissionList;
 
     public List<Permission> getPermissionList() {
         return permissionList;
@@ -42,11 +39,11 @@ public class Permission {
         this.permissionList = permissionList;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -66,11 +63,11 @@ public class Permission {
         this.permitType = permitType == null ? null : permitType.trim();
     }
 
-    public Long getParentId() {
+    public Integer getParentId() {
         return parentId;
     }
 
-    public void setParentId(Long parentId) {
+    public void setParentId(Integer parentId) {
         this.parentId = parentId;
     }
 

@@ -13,7 +13,7 @@ public interface RoleMapper {
 
     int deleteByExample(RoleExample example);
 
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(Role record);
 
@@ -21,7 +21,7 @@ public interface RoleMapper {
 
     List<Role> selectByExample(RoleExample example);
 
-    Role selectByPrimaryKey(Long id);
+    Role selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") Role record, @Param("example") RoleExample example);
 
@@ -31,5 +31,9 @@ public interface RoleMapper {
 
     int updateByPrimaryKey(Role record);
 
+    /**
+     * 查询所有角色
+     * @return
+     */
     List<Role> selectAll();
 }

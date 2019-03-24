@@ -6,7 +6,7 @@
 <generatorConfiguration>
 
     <!-- 指定连接数据库的JDBC驱动包所在位置，指定到你本机的完整路径 -->
-    <classPathEntry location="G:/aMytest_proj/repository/mysql/mysql-connector-java/8.0.15/mysql-connector-java-8.0.15.jar"/>
+    <classPathEntry location="E:/Maven_Repository/\mysql/mysql-connector-java/8.0.15/mysql-connector-java-8.0.15.jar"/>
 
     <!-- 配置table表信息内容体，targetRuntime指定采用MyBatis3的版本 -->
     <context id="tables" targetRuntime="MyBatis3">
@@ -60,7 +60,7 @@
                enableSelectByPrimaryKey="true"
                enableUpdateByPrimaryKey="true"
                enableDeleteByPrimaryKey="true"
-        selectByExampleQueryId="false"/>
+        />
 
     </context>
 

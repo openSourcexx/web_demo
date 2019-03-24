@@ -15,7 +15,7 @@ public class RolePermissionRelationServiceImpl implements RolePermissionRelation
     private RolePermissionRelationMapper relationMapper;
 
     @Override
-    public List<RolePermissionRelation> queryByRoleId(Long roleId) {
+    public List<RolePermissionRelation> queryByRoleId(Integer roleId) {
         RolePermissionRelationExample example = new RolePermissionRelationExample();
         example.createCriteria().andRoleIdEqualTo(roleId);
         return relationMapper.selectByExample(example);

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50620
 File Encoding         : 65001
 
-Date: 2019-03-23 21:32:36
+Date: 2019-03-24 12:45:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,10 +20,10 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `t_operator_log`;
 CREATE TABLE `t_operator_log` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `operator_id` bigint(20) DEFAULT NULL,
-  `operator_name` varchar(60) DEFAULT NULL,
-  `content` varchar(255) DEFAULT NULL,
+  `id` int(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `operator_id` int(20) DEFAULT NULL COMMENT '用户id',
+  `operator_name` varchar(60) DEFAULT NULL COMMENT '用户姓名',
+  `content` varchar(255) DEFAULT NULL COMMENT '操作内容',
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -45,41 +45,45 @@ INSERT INTO `t_operator_log` VALUES ('7', '1', 'admin', '登陆', '2019-03-23 08
 -- ----------------------------
 DROP TABLE IF EXISTS `t_permission`;
 CREATE TABLE `t_permission` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `permit_name` varchar(60) DEFAULT NULL,
-  `permit_type` varchar(20) DEFAULT NULL COMMENT '权限类型[菜单/按钮]',
-  `parent_id` bigint(20) DEFAULT NULL COMMENT '父权限id',
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `permit_name` varchar(60) DEFAULT NULL COMMENT '权限名',
+  `permit_type` varchar(20) DEFAULT NULL COMMENT '权限类型[菜单menu/按钮button]',
+  `parent_id` int(5) DEFAULT NULL COMMENT '父权限id',
   `permit_code` varchar(100) DEFAULT NULL COMMENT '权限编码',
   `url` varchar(255) DEFAULT NULL COMMENT '连接路径',
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime DEFAULT NULL,
   `icon` varchar(255) DEFAULT NULL COMMENT '图标',
-  `sort` varchar(255) DEFAULT NULL,
-  `available` char(2) DEFAULT NULL,
+  `sort` varchar(255) DEFAULT NULL COMMENT '排序',
+  `available` char(2) DEFAULT NULL COMMENT '启用状态[0关闭1启用]',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_permission
 -- ----------------------------
-INSERT INTO `t_permission` VALUES ('1', '管理面板', 'menu', '0', 'manage', null, '2019-03-23 20:38:02', null, null, '0', '1');
-INSERT INTO `t_permission` VALUES ('2', '用户管理', 'menu', '1', 'user', null, '2019-03-23 20:38:29', null, null, '1', '1');
+INSERT INTO `t_permission` VALUES ('1', '管理面板', 'menu', null, 'manage', null, '2019-03-23 20:38:02', null, null, '1', '1');
+INSERT INTO `t_permission` VALUES ('2', '用户管理', 'menu', '1', 'user', null, '2019-03-23 20:38:29', null, null, '2', '1');
 INSERT INTO `t_permission` VALUES ('3', '用户管理-添加', 'button', '2', 'user-add', '/manage/user/add', '2019-03-23 20:39:00', null, null, '1.1', '1');
 INSERT INTO `t_permission` VALUES ('4', '角色管理', 'menu', '1', 'role', null, '2019-03-23 20:44:51', null, null, '2', '1');
 INSERT INTO `t_permission` VALUES ('5', '角色管理-添加', 'button', '4', 'role-add', '/manage/role/add', '2019-03-23 20:45:23', null, null, '2.1', '1');
+INSERT INTO `t_permission` VALUES ('6', '机构管理', 'menu', '1', 'organ', null, '2019-03-24 12:39:12', null, null, '3', '1');
+INSERT INTO `t_permission` VALUES ('7', '研发部', 'menu', '6', 'organ-dev', null, '2019-03-24 12:39:58', null, null, '1', '1');
+INSERT INTO `t_permission` VALUES ('8', '研发部-添加', 'button', '7', 'organ-dev-add', '/manage/organ/dev/add', '2019-03-24 12:41:30', null, null, '1', '1');
+INSERT INTO `t_permission` VALUES ('9', '运维部', 'menu', '6', 'organ-ops', null, '2019-03-24 12:45:05', null, null, '2', '1');
 
 -- ----------------------------
 -- Table structure for t_role
 -- ----------------------------
 DROP TABLE IF EXISTS `t_role`;
 CREATE TABLE `t_role` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `role_name` varchar(60) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
+  `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
+  `role_name` varchar(60) DEFAULT NULL COMMENT '角色名',
+  `description` varchar(255) DEFAULT NULL COMMENT '角色描述',
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_role
@@ -92,13 +96,13 @@ INSERT INTO `t_role` VALUES ('2', '普通用户', '一般权限', '2019-03-23 16
 -- ----------------------------
 DROP TABLE IF EXISTS `t_role_permission_relation`;
 CREATE TABLE `t_role_permission_relation` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `role_id` bigint(20) DEFAULT NULL,
-  `permission_id` bigint(20) DEFAULT NULL,
+  `id` int(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `role_id` int(20) DEFAULT NULL COMMENT '角色id',
+  `permission_id` int(20) DEFAULT NULL COMMENT '权限id',
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_role_permission_relation
@@ -110,22 +114,26 @@ INSERT INTO `t_role_permission_relation` VALUES ('4', '1', '4', '2019-03-23 17:1
 INSERT INTO `t_role_permission_relation` VALUES ('5', '1', '5', '2019-03-23 17:19:42', null);
 INSERT INTO `t_role_permission_relation` VALUES ('6', '2', '4', '2019-03-23 17:20:38', null);
 INSERT INTO `t_role_permission_relation` VALUES ('7', '2', '5', '2019-03-23 17:20:43', null);
+INSERT INTO `t_role_permission_relation` VALUES ('8', '1', '6', '2019-03-24 12:41:43', null);
+INSERT INTO `t_role_permission_relation` VALUES ('9', '1', '7', '2019-03-24 12:41:46', null);
+INSERT INTO `t_role_permission_relation` VALUES ('10', '1', '8', '2019-03-24 12:45:18', null);
+INSERT INTO `t_role_permission_relation` VALUES ('11', '1', '9', '2019-03-24 12:45:21', null);
 
 -- ----------------------------
 -- Table structure for t_user
 -- ----------------------------
 DROP TABLE IF EXISTS `t_user`;
 CREATE TABLE `t_user` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `login_account` varchar(60) DEFAULT NULL,
-  `login_password` varchar(255) DEFAULT NULL,
-  `user_name` varchar(60) DEFAULT NULL,
-  `gender` char(1) DEFAULT NULL,
-  `mobile` varchar(11) DEFAULT NULL,
-  `user_status` char(2) DEFAULT NULL,
-  `organ_id` int(11) DEFAULT NULL,
-  `token` varchar(255) DEFAULT NULL,
-  `tenant_id` varchar(3) DEFAULT NULL,
+  `id` int(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `login_account` varchar(60) DEFAULT NULL COMMENT '登录账号',
+  `login_password` varchar(255) DEFAULT NULL COMMENT '登录密码',
+  `user_name` varchar(60) DEFAULT NULL COMMENT '用户名',
+  `gender` char(1) DEFAULT NULL COMMENT '性别[0男1]',
+  `mobile` varchar(11) DEFAULT NULL COMMENT '手机号',
+  `user_status` char(2) DEFAULT NULL COMMENT '用户状态[0关闭1启用]',
+  `organ_id` int(11) DEFAULT NULL COMMENT '组织机构id',
+  `token` varchar(255) DEFAULT NULL COMMENT '登录token',
+  `tenant_id` varchar(3) DEFAULT NULL COMMENT '租户号',
   `sys_id` varchar(3) DEFAULT NULL,
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime DEFAULT NULL,
@@ -143,9 +151,9 @@ INSERT INTO `t_user` VALUES ('2', 'a', 'a', 'a', '0', null, '0', null, null, nul
 -- ----------------------------
 DROP TABLE IF EXISTS `t_user_role_relation`;
 CREATE TABLE `t_user_role_relation` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) DEFAULT NULL,
-  `role_id` bigint(20) DEFAULT NULL,
+  `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(20) DEFAULT NULL,
+  `role_id` int(20) DEFAULT NULL,
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)

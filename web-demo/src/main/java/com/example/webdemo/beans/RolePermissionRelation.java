@@ -3,37 +3,37 @@ package com.example.webdemo.beans;
 import java.util.Date;
 
 public class RolePermissionRelation {
-    private Long id;
+    private Integer id;
 
-    private Long roleId;
+    private Integer roleId;
 
-    private Long permissionId;
+    private Integer permissionId;
 
     private Date createTime;
 
     private Date updateTime;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Long getRoleId() {
+    public Integer getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(Long roleId) {
+    public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
 
-    public Long getPermissionId() {
+    public Integer getPermissionId() {
         return permissionId;
     }
 
-    public void setPermissionId(Long permissionId) {
+    public void setPermissionId(Integer permissionId) {
         this.permissionId = permissionId;
     }
 

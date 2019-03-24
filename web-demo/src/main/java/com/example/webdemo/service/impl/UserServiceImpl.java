@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> queryAll() {
-        return userMapper.selectAll();
+        return userMapper.listAll();
     }
 
     @Override
