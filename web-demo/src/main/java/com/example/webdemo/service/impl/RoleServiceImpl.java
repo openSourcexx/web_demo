@@ -4,7 +4,7 @@ import com.example.webdemo.beans.Role;
 import com.example.webdemo.beans.RoleExample;
 import com.example.webdemo.dao.RoleMapper;
 import com.example.webdemo.enums.SysCodeEnum;
-import com.example.webdemo.exception.ServiceException;
+import com.example.webdemo.exception.DBException;
 import com.example.webdemo.service.RoleService;
 import com.example.webdemo.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class RoleServiceImpl implements RoleService {
         try {
             return roleMapper.insertSelective(role) == 1;
         } catch (Exception e) {
-            throw new ServiceException(SysCodeEnum.DB_ERR.getCode(),SysCodeEnum.DB_ERR.getDesc(),e);
+            throw new DBException(SysCodeEnum.DB_ERR.getCode(),SysCodeEnum.DB_ERR.getDesc(),e);
         }
     }
 

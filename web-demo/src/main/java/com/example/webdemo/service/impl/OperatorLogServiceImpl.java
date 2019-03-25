@@ -1,11 +1,10 @@
 package com.example.webdemo.service.impl;
 
 import com.example.webdemo.beans.OperatorLog;
-import com.example.webdemo.beans.OperatorLogExample;
 import com.example.webdemo.common.Page;
 import com.example.webdemo.dao.OperatorLogMapper;
 import com.example.webdemo.enums.SysCodeEnum;
-import com.example.webdemo.exception.ServiceException;
+import com.example.webdemo.exception.DBException;
 import com.example.webdemo.service.OperatorLogService;
 import com.example.webdemo.utils.JSONUtil;
 import com.example.webdemo.vo.request.OperatorLogRequest;
@@ -16,7 +15,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Date;
 import java.util.List;
@@ -41,7 +39,7 @@ public class OperatorLogServiceImpl implements OperatorLogService {
             return operatorLogMapper.insertSelective(log) == 1;
         } catch (Exception e) {
             e.printStackTrace();
-            throw new ServiceException(SysCodeEnum.DB_ERR.getCode(),SysCodeEnum.DB_ERR.getDesc());
+            throw new DBException(SysCodeEnum.DB_ERR.getCode(),SysCodeEnum.DB_ERR.getDesc());
         }
     }
 
