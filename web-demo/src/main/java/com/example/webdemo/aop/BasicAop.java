@@ -1,6 +1,6 @@
 package com.example.webdemo.aop;
 
-import com.example.webdemo.auth.BasiLog;
+import com.example.webdemo.auth.BasicLog;
 import com.example.webdemo.beans.OperatorLog;
 import com.example.webdemo.service.OperatorLogService;
 import org.aspectj.lang.JoinPoint;
@@ -19,9 +19,9 @@ import org.springframework.stereotype.Component;
  */
 @Aspect
 @Component
-public class BusiAop {
+public class BasicAop {
 
-    private Logger logger = LoggerFactory.getLogger(BusiAop.class);
+    private Logger logger = LoggerFactory.getLogger(BasicAop.class);
 
     @Autowired
     private OperatorLogService logService;
@@ -29,7 +29,7 @@ public class BusiAop {
     /**
      * 配置切入点，带有@Busilog注解的方法
      */
-    @Pointcut("@annotation(com.example.webdemo.auth.BasiLog)")
+    @Pointcut("@annotation(com.example.webdemo.auth.BasicLog)")
     public void log() {
 
     }
@@ -37,23 +37,23 @@ public class BusiAop {
     /**
      * 前置通知
      * @param joinPoint
-     * @param basiLog
+     * @param basicLog
      */
-    @Before("log() && @annotation(basiLog)")
-    public void before(JoinPoint joinPoint,BasiLog basiLog) {
+    @Before("log() && @annotation(basicLog)")
+    public void before(JoinPoint joinPoint,BasicLog basicLog) {
 
     }
 
     /**
      * 后置通知
      * @param joinPoint
-     * @param basiLog
+     * @param basicLog
      */
-    @After("log() && @annotation(basiLog)")
-    public void after(JoinPoint joinPoint,BasiLog basiLog) {
+    @After("log() && @annotation(basicLog)")
+    public void after(JoinPoint joinPoint,BasicLog basicLog) {
         // 用户登陆校验
         OperatorLog log = new OperatorLog();
-        log.setContent(basiLog.value());
+        log.setContent(basicLog.value());
         log.setOperatorName("admin");
         log.setOperatorId(1);
         try {

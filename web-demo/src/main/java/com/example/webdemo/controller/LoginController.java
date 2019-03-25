@@ -1,10 +1,6 @@
 package com.example.webdemo.controller;
 
-import com.example.webdemo.auth.BasiLog;
-import com.example.webdemo.beans.User;
-import com.example.webdemo.enums.SysCodeEnum;
-import com.example.webdemo.enums.UserStatusEnum;
-import com.example.webdemo.exception.ServiceException;
+import com.example.webdemo.auth.BasicLog;
 import com.example.webdemo.service.LoginService;
 import com.example.webdemo.vo.BaseVo;
 import com.example.webdemo.vo.request.LoginRequest;
@@ -26,7 +22,7 @@ public class LoginController {
     private LoginService loginService;
 
     @RequestMapping("/login")
-    @BasiLog("登陆")
+    @BasicLog("登陆")
     public BaseVo login(@RequestBody @Valid LoginRequest request) {
         return loginService.login(request);
     }
