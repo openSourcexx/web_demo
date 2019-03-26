@@ -1,6 +1,6 @@
-package com.example.webdemo.vo;
+package com.example.webdemo.common.vo;
 
-import com.example.webdemo.utils.DateUtil;
+import com.example.webdemo.common.utils.DateUtil;
 
 import java.io.Serializable;
 import java.util.Date;

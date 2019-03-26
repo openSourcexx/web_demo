@@ -1,4 +1,4 @@
-package com.example.webdemo.enums;
+package com.example.webdemo.common.enums;
 
 import java.util.Arrays;
 

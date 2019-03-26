@@ -6,13 +6,12 @@ import com.example.webdemo.beans.UserExample;
 import com.example.webdemo.dao.PermissionMapper;
 import com.example.webdemo.dao.UserMapper;
 import com.example.webdemo.service.UserService;
-import com.example.webdemo.vo.PageVo;
+import com.example.webdemo.common.vo.PageVo;
 import com.example.webdemo.vo.request.UserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

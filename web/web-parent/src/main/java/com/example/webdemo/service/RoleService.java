@@ -1,7 +1,7 @@
 package com.example.webdemo.service;
 
 import com.example.webdemo.beans.Role;
-import com.example.webdemo.vo.PageVo;
+import com.example.webdemo.common.vo.PageVo;
 
 import java.util.List;
 

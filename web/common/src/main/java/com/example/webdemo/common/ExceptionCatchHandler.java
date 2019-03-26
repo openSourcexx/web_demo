@@ -1,9 +1,8 @@
 package com.example.webdemo.common;
 
-import com.example.webdemo.enums.SysCodeEnum;
-import com.example.webdemo.exception.DBException;
-import com.example.webdemo.exception.ServiceException;
-import com.example.webdemo.vo.BaseVo;
+import com.example.webdemo.common.exception.DBException;
+import com.example.webdemo.common.exception.ServiceException;
+import com.example.webdemo.common.vo.BaseVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

@@ -1,7 +1,7 @@
 package com.example.webdemo.vo.response;
 
 import com.example.webdemo.beans.OperatorLog;
-import com.example.webdemo.vo.BaseVo;
+import com.example.webdemo.common.vo.BaseVo;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import java.util.List;
  * @author tangaq
  * @date 2019/3/21
  */
-public class OperatorLogVo extends BaseVo{
+public class OperatorLogVo extends BaseVo {
     private int total;
 
     private List<OperatorLog> list;

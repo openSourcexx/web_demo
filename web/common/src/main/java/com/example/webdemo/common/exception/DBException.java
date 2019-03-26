@@ -1,4 +1,4 @@
-package com.example.webdemo.exception;
+package com.example.webdemo.common.exception;
 
 /**
  * 数据库异常

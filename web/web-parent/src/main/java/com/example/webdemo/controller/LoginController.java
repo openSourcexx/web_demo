@@ -1,8 +1,8 @@
 package com.example.webdemo.controller;
 
 import com.example.webdemo.auth.BasicLog;
+import com.example.webdemo.common.vo.BaseVo;
 import com.example.webdemo.service.LoginService;
-import com.example.webdemo.vo.BaseVo;
 import com.example.webdemo.vo.request.LoginRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;

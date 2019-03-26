@@ -1,4 +1,4 @@
-package com.example.webdemo.utils;
+package com.example.webdemo.common.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

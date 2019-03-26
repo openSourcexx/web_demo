@@ -2,11 +2,11 @@ package com.example.webdemo.service.impl;
 
 import com.example.webdemo.beans.Role;
 import com.example.webdemo.beans.RoleExample;
+import com.example.webdemo.common.enums.SysCodeEnum;
+import com.example.webdemo.common.exception.DBException;
 import com.example.webdemo.dao.RoleMapper;
-import com.example.webdemo.enums.SysCodeEnum;
-import com.example.webdemo.exception.DBException;
 import com.example.webdemo.service.RoleService;
-import com.example.webdemo.vo.PageVo;
+import com.example.webdemo.common.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

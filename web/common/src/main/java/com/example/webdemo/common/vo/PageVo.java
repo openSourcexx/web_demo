@@ -1,4 +1,4 @@
-package com.example.webdemo.vo;
+package com.example.webdemo.common.vo;
 
 import java.util.List;
 

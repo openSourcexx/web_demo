@@ -2,17 +2,13 @@ package com.example.webdemo.service.impl;
 
 import com.example.webdemo.beans.Permission;
 import com.example.webdemo.beans.PermissionExample;
-import com.example.webdemo.beans.RolePermissionRelation;
-import com.example.webdemo.beans.RolePermissionRelationExample;
 import com.example.webdemo.dao.PermissionMapper;
-import com.example.webdemo.dao.RolePermissionRelationMapper;
 import com.example.webdemo.service.PermissionService;
-import com.example.webdemo.vo.PageVo;
+import com.example.webdemo.common.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class PermissionServiceImpl implements PermissionService {

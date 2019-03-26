@@ -1,21 +1,17 @@
 package com.example.webdemo.service.impl;
 
 import com.example.webdemo.beans.User;
-import com.example.webdemo.beans.UserExample;
+import com.example.webdemo.common.enums.SysCodeEnum;
+import com.example.webdemo.common.enums.UserStatusEnum;
+import com.example.webdemo.common.exception.ServiceException;
+import com.example.webdemo.common.vo.BaseVo;
 import com.example.webdemo.dao.UserMapper;
-import com.example.webdemo.enums.SysCodeEnum;
-import com.example.webdemo.enums.UserStatusEnum;
-import com.example.webdemo.exception.ServiceException;
 import com.example.webdemo.service.LoginService;
-import com.example.webdemo.vo.BaseVo;
 import com.example.webdemo.vo.request.LoginRequest;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.validation.Valid;
-import java.util.Objects;
 
 /**
  * @author tangaq

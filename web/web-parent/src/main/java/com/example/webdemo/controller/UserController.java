@@ -2,14 +2,13 @@ package com.example.webdemo.controller;
 
 import com.example.webdemo.beans.User;
 import com.example.webdemo.service.UserService;
-import com.example.webdemo.vo.PageVo;
+import com.example.webdemo.common.vo.PageVo;
 import com.example.webdemo.vo.request.UserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.List;
 
 @RestController
