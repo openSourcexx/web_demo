@@ -10,7 +10,6 @@
 
 	<artifactId>web-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>web-parent</name>
 
 	<properties>
 	</properties>
@@ -85,12 +84,11 @@
 
     </dependencies>
 
+
+
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+
 			<plugin>
 				<groupId>org.mybatis.generator</groupId>
 				<artifactId>mybatis-generator-maven-plugin</artifactId>
