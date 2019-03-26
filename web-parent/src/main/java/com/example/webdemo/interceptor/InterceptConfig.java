@@ -1,4 +1,4 @@
-package com.example.webdemo.common.interceptor;
+package com.example.webdemo.interceptor;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

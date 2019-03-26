@@ -1,4 +1,4 @@
-package com.example.webdemo.common.interceptor;
+package com.example.webdemo.interceptor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
