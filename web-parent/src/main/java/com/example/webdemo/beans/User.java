@@ -5,18 +5,39 @@ import java.util.*;
 public class User {
     private Integer id;
 
+    /**
+     * 登陆账号
+     */
     private String loginAccount;
 
+    /**
+     * 登陆密码
+     */
     private String loginPassword;
 
+    /**
+     * 账户名
+     */
     private String userName;
 
+    /**
+     * 性别
+     */
     private String gender;
 
+    /**
+     * 电话
+     */
     private String mobile;
 
+    /**
+     * 用户状态
+     */
     private String userStatus;
 
+    /**
+     * 机构
+     */
     private Integer organId;
 
     private String token;
@@ -28,6 +49,11 @@ public class User {
     private Date createTime;
 
     private Date updateTime;
+
+    /**
+     * 用户拥有角色列表
+     */
+    private List<Role> roleList = new ArrayList<>();
 
     /**
      * 用户拥有权限1对多
@@ -157,5 +183,13 @@ public class User {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public List<Role> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<Role> roleList) {
+        this.roleList = roleList;
     }
 }

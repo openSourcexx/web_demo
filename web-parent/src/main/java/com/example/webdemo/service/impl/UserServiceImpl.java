@@ -3,15 +3,21 @@ package com.example.webdemo.service.impl;
 import com.example.webdemo.beans.Permission;
 import com.example.webdemo.beans.User;
 import com.example.webdemo.beans.UserExample;
+import com.example.webdemo.common.enums.SysCodeEnum;
+import com.example.webdemo.common.enums.UserStatusEnum;
+import com.example.webdemo.common.exception.DBException;
+import com.example.webdemo.common.vo.BaseVo;
+import com.example.webdemo.common.vo.PageVo;
 import com.example.webdemo.dao.PermissionMapper;
 import com.example.webdemo.dao.UserMapper;
 import com.example.webdemo.service.UserService;
-import com.example.webdemo.common.vo.PageVo;
 import com.example.webdemo.vo.request.UserRequest;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -25,24 +31,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public PageVo query(UserRequest req) {
         PageVo vo = new PageVo<User>(true);
-        UserExample example = new UserExample();
-        UserExample.Criteria criteria = example.createCriteria();
-
-        if (!StringUtils.isEmpty(req.getLoginAccount())) {
-            criteria.andLoginAccountEqualTo(req.getLoginAccount());
+        User param = new User();
+        BeanUtils.copyProperties(req,param);
+        try {
+            vo.setList(userMapper.selectByParam(param));
+            vo.setTotal((int) userMapper.countByParam(param));
+        } catch (Exception e) {
+            throw new DBException(SysCodeEnum.DB_ERR.getCode(), SysCodeEnum.DB_ERR.getDesc());
         }
-
-        if (!StringUtils.isEmpty(req.getUserName())) {
-            criteria.andUserNameEqualTo(req.getUserName());
-        }
-
-        if (!StringUtils.isEmpty(req.getMobile())) {
-            criteria.andMobileEqualTo(req.getMobile());
-        }
-
-        List<User> userList = userMapper.selectByExample(example);
-        vo.setList(userList);
-        vo.setTotal(userMapper.countByExample(example));
         return vo;
     }
 
@@ -57,6 +53,41 @@ public class UserServiceImpl implements UserService {
         List<Permission> permissionList = permissionMapper.selectPermissionMenuByUid(user.getId());
         user.setPermissionList(permissionList);
         return user;
+    }
+
+    @Override
+    @Transactional
+    public BaseVo save(User user) {
+        try {
+            user.setCreateTime(new Date());
+            user.setUserStatus(UserStatusEnum.USING.getCode());
+            return new BaseVo(userMapper.insertSelective(user) == 1);
+        } catch (Exception e) {
+            throw new DBException(SysCodeEnum.DB_ERR.getCode(), SysCodeEnum.DB_ERR.getDesc());
+        }
+    }
+
+    @Override
+    @Transactional
+    public BaseVo remove(List<Integer> ids) {
+        UserExample example = new UserExample();
+        example.createCriteria().andIdIn(ids);
+        try {
+            return new BaseVo(userMapper.deleteByExample(example) == ids.size());
+        } catch (Exception e) {
+            throw new DBException(SysCodeEnum.DB_ERR.getCode(), SysCodeEnum.DB_ERR.getDesc());
+        }
+    }
+
+    @Override
+    @Transactional
+    public BaseVo update(User user) {
+        try {
+            user.setUpdateTime(new Date());
+            return new BaseVo(userMapper.updateByPrimaryKeySelective(user) == 1);
+        } catch (Exception e) {
+            throw new DBException(SysCodeEnum.DB_ERR.getCode(), SysCodeEnum.DB_ERR.getDesc());
+        }
     }
 
 }

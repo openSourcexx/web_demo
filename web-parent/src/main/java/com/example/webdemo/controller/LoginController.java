@@ -27,8 +27,4 @@ public class LoginController {
         return loginService.login(request);
     }
 
-    @RequestMapping("/register")
-    public BaseVo register(@RequestBody LoginRequest request) {
-        return loginService.register(request);
-    }
 }

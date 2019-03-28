@@ -2,10 +2,10 @@ package com.example.webdemo.dao;
 
 import com.example.webdemo.beans.User;
 import com.example.webdemo.beans.UserExample;
-import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface UserMapper {
@@ -32,7 +32,7 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     /**
-     * 条件查询
+     * 单个查询
      * @param u
      * @return
      */
@@ -43,4 +43,19 @@ public interface UserMapper {
      * @return
      */
     List<User> listAll();
+
+    /**
+     * 条件查询
+     * @param param
+     * @return
+     */
+    List<User> selectByParam(User param);
+
+    /**
+     * 翻页统计
+     * @param param
+     * @return
+     */
+    long countByParam(User param);
+    
 }

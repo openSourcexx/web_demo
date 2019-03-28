@@ -1,10 +1,27 @@
 package com.example.webdemo.vo.request;
 
-public class UserRequest {
+import com.example.webdemo.common.Page;
+
+public class UserRequest extends Page {
+
+    /**
+     * 用户id
+     */
+    private Integer id;
+
+    /**
+     * 登陆账号
+     */
     private String loginAccount;
 
+    /**
+     * 用户名
+     */
     private String userName;
 
+    /**
+     * 手机号
+     */
     private String mobile;
 
     public String getLoginAccount() {

@@ -8,9 +8,10 @@ import java.util.Arrays;
  * @date 2019/3/21
  */
 public enum UserStatusEnum {
-    ON_LINE("0","在线"),
-    OUT_LINE("1","离线"),
-    FREEZE("2","停用");
+    USING("0","启用"),
+    FREEZE("1","停用"),
+    ON_LINE("2","在线"),
+    OUT_LINE("3","离线");
 
     private String code;
 
