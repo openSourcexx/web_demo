@@ -6,15 +6,19 @@ import com.example.webdemo.service.PermissionService;
 import com.example.webdemo.service.RolePermissionRelationService;
 import com.example.webdemo.service.RoleService;
 import com.example.webdemo.common.vo.PageVo;
+import com.example.webdemo.vo.request.RoleRequest;
+import com.example.webdemo.vo.request.UpdateRoleRequest;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/role")
+@RequestMapping("/api/role")
 public class RoleController {
 
     @Autowired
@@ -31,9 +35,17 @@ public class RoleController {
         return new BaseVo(roleService.save(role));
     }
 
+    @RequestMapping("/update")
+    public BaseVo update(@RequestBody @Valid UpdateRoleRequest req) {
+        Role role = new Role();
+        BeanUtils.copyProperties(req,role);
+        return new BaseVo(roleService.update(role));
+    }
+
+
     @RequestMapping("/query")
-    public PageVo query(@RequestBody Role role) {
-        return roleService.query(role);
+    public PageVo query(@RequestBody RoleRequest req) {
+        return roleService.query(req);
     }
 
     @RequestMapping("/queryAll")

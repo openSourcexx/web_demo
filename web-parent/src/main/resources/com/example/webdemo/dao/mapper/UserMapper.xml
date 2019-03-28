@@ -401,8 +401,8 @@
     on ur.role_id = r.id
   </select>
 
-  <!-- 翻页查询统计条数 -->
-  <select id="selectByParam" parameterType="com.example.webdemo.beans.User" resultMap="UserRoleMap">
+  <!-- 分页查询用户及用户关联角色 -->
+  <select id="selectUserRolesByParam" parameterType="map" resultMap="UserRoleMap">
     SELECT DISTINCT
       u.id,u.login_account,u.login_password,u.user_name,u.gender,u.mobile,u.user_status,u.organ_id,u.token,u.tenant_id,u.sys_id,u.create_time,u.update_time,r.id roleId,r.role_name,r.description
     from t_user u
@@ -411,29 +411,31 @@
     LEFT JOIN t_role r
     on ur.role_id = r.id
     <where>
-      <if test="id != null" >
-        and id = #{id,jdbcType=INTEGER}
+      <if test="record.id != null" >
+        and id = #{record.id,jdbcType=INTEGER}
       </if>
-      <if test="loginAccount != null" >
-        and login_account = #{loginAccount,jdbcType=VARCHAR}
+      <if test="record.loginAccount != null" >
+        and login_account = #{record.loginAccount,jdbcType=VARCHAR}
       </if>
-      <if test="loginPassword != null" >
-        and login_password = #{loginPassword,jdbcType=VARCHAR}
+      <if test="record.loginPassword != null" >
+        and login_password = #{record.loginPassword,jdbcType=VARCHAR}
       </if>
-      <if test="userName != null" >
-        and user_name = #{userName,jdbcType=VARCHAR}
+      <if test="record.userName != null" >
+        and user_name = #{record.userName,jdbcType=VARCHAR}
       </if>
-      <if test="mobile != null" >
-        and mobile = #{mobile,jdbcType=VARCHAR}
+      <if test="record.mobile != null" >
+        and mobile = #{record.mobile,jdbcType=VARCHAR}
       </if>
-      <if test="organId != null" >
-        and organ_id = #{organId,jdbcType=INTEGER}
+      <if test="record.organId != null" >
+        and organ_id = #{record.organId,jdbcType=INTEGER}
       </if>
     </where>
+    ORDER BY u.update_time DESC
+    limit #{pageNo},#{pageSize}
   </select>
 
-  <!-- 翻页查询统计条数 -->
-  <select id="countByParam" parameterType="com.example.webdemo.beans.User" resultType="java.lang.Long">
+  <!-- 用户及用户关联角色 统计条数 -->
+  <select id="countUserRolesByParam" parameterType="map" resultType="java.lang.Long">
     SELECT COUNT(*)
     from t_user u
     LEFT JOIN t_user_role_relation ur
@@ -441,23 +443,23 @@
     LEFT JOIN t_role r
     on ur.role_id = r.id
     <where>
-      <if test="id != null" >
-        and id = #{id,jdbcType=INTEGER}
+      <if test="record.id != null" >
+        and id = #{record.id,jdbcType=INTEGER}
       </if>
-      <if test="loginAccount != null" >
-        and login_account = #{loginAccount,jdbcType=VARCHAR}
+      <if test="record.loginAccount != null" >
+        and login_account = #{record.loginAccount,jdbcType=VARCHAR}
       </if>
-      <if test="loginPassword != null" >
-        and login_password = #{loginPassword,jdbcType=VARCHAR}
+      <if test="record.loginPassword != null" >
+        and login_password = #{record.loginPassword,jdbcType=VARCHAR}
       </if>
-      <if test="userName != null" >
-        and user_name = #{userName,jdbcType=VARCHAR}
+      <if test="record.userName != null" >
+        and user_name = #{record.userName,jdbcType=VARCHAR}
       </if>
-      <if test="mobile != null" >
-        and mobile = #{mobile,jdbcType=VARCHAR}
+      <if test="record.mobile != null" >
+        and mobile = #{record.mobile,jdbcType=VARCHAR}
       </if>
-      <if test="organId != null" >
-        and organ_id = #{organId,jdbcType=INTEGER}
+      <if test="record.organId != null" >
+        and organ_id = #{record.organId,jdbcType=INTEGER}
       </if>
     </where>
   </select>

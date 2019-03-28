@@ -9,11 +9,11 @@ import java.util.List;
 
 public interface UserService {
     /**
-     * 翻页查询
+     * 分页查询用户及关联角色
      * @param req
      * @return
      */
-    PageVo query(UserRequest req);
+    PageVo listUserRolesByParam(UserRequest req);
 
     /**
      * 查询所有
@@ -22,11 +22,11 @@ public interface UserService {
     List<User> queryAll();
 
     /**
-     * 单个查询
+     * 单个查询用户及用户菜单权限
      * @param u
      * @return
      */
-    User getById(User u);
+    User getMenuByUid(User u);
 
     /**
      * 新增

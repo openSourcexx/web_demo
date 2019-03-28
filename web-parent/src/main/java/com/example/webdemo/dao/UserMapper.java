@@ -46,16 +46,20 @@ public interface UserMapper {
 
     /**
      * 条件查询
-     * @param param
+     * @param record
+     * @param pageNo
+     * @param pageSize
      * @return
      */
-    List<User> selectByParam(User param);
+    List<User> selectUserRolesByParam(@Param("record") User record,@Param("pageNo") int pageNo, @Param("pageSize") int pageSize);
 
     /**
      * 翻页统计
-     * @param param
+     * @param record
+     * @param pageNo
+     * @param pageSize
      * @return
      */
-    long countByParam(User param);
+    long countUserRolesByParam(@Param("record") User record,@Param("pageNo") int pageNo, @Param("pageSize") int pageSize);
     
 }

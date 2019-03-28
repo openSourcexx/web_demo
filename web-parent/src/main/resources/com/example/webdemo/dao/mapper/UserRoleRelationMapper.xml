@@ -208,4 +208,14 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <insert id="insertBatch" parameterType="com.example.webdemo.beans.UserRoleRelation">
+    INSERT INTO t_user_role_relation (user_id, role_id, create_time)
+    VALUES
+    <foreach collection="list" item="item" index="index" separator=",">
+      (
+      #{item.userId},#{item.roleId},#{item.createTime}
+      )
+    </foreach>
+  </insert>
 </mapper>

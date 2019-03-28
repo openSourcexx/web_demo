@@ -3,6 +3,7 @@ package com.example.webdemo.service.impl;
 import com.example.webdemo.beans.Permission;
 import com.example.webdemo.beans.User;
 import com.example.webdemo.beans.UserExample;
+import com.example.webdemo.common.Page;
 import com.example.webdemo.common.enums.SysCodeEnum;
 import com.example.webdemo.common.enums.UserStatusEnum;
 import com.example.webdemo.common.exception.DBException;
@@ -29,14 +30,16 @@ public class UserServiceImpl implements UserService {
     private PermissionMapper permissionMapper;
 
     @Override
-    public PageVo query(UserRequest req) {
+    public PageVo listUserRolesByParam(UserRequest req) {
         PageVo vo = new PageVo<User>(true);
         User param = new User();
         BeanUtils.copyProperties(req,param);
+        int pageNo = Page.getPageStart(req.getPageNo(),req.getPageSize());
         try {
-            vo.setList(userMapper.selectByParam(param));
-            vo.setTotal((int) userMapper.countByParam(param));
+            vo.setList(userMapper.selectUserRolesByParam(param,pageNo,req.getPageSize()));
+            vo.setTotal((int) userMapper.countUserRolesByParam(param,pageNo,req.getPageSize()));
         } catch (Exception e) {
+            e.printStackTrace();
             throw new DBException(SysCodeEnum.DB_ERR.getCode(), SysCodeEnum.DB_ERR.getDesc());
         }
         return vo;
@@ -48,7 +51,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getById(User u) {
+    public User getMenuByUid(User u) {
         User user = userMapper.selectByUser(u);
         List<Permission> permissionList = permissionMapper.selectPermissionMenuByUid(user.getId());
         user.setPermissionList(permissionList);

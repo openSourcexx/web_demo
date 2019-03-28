@@ -82,6 +82,7 @@
     <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
+    limit #{pageNo},#{pageSize}
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -215,4 +216,5 @@
     FROM
     t_role
   </select>
+
 </mapper>

@@ -3,7 +3,9 @@ package com.example.webdemo.controller;
 import com.example.webdemo.beans.User;
 import com.example.webdemo.common.vo.BaseVo;
 import com.example.webdemo.common.vo.PageVo;
+import com.example.webdemo.service.UserRoleRelationService;
 import com.example.webdemo.service.UserService;
+import com.example.webdemo.vo.request.AllotUserRolesRequest;
 import com.example.webdemo.vo.request.UserDelRequest;
 import com.example.webdemo.vo.request.UserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +22,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserRoleRelationService userRoleRelationService;
+
     @RequestMapping("/query")
     public PageVo query(@RequestBody UserRequest req) {
 
-        return userService.query(req);
+        return userService.listUserRolesByParam(req);
     }
 
     @RequestMapping("/all")
@@ -31,9 +36,9 @@ public class UserController {
         return userService.queryAll();
     }
 
-    @RequestMapping("/my")
-    public User getById(@RequestBody User u) {
-        return userService.getById(u);
+    @RequestMapping("/permit/my")
+    public User getMenuByUid(@RequestBody User u) {
+        return userService.getMenuByUid(u);
     }
 
     @RequestMapping("/register")
@@ -49,5 +54,10 @@ public class UserController {
     @RequestMapping("/update")
     public BaseVo update(@RequestBody User u) {
         return userService.update(u);
+    }
+
+    @RequestMapping("/allot")
+    public BaseVo allotUserRoles(@RequestBody @Valid AllotUserRolesRequest req) {
+        return userRoleRelationService.allotUserRoles(req);
     }
 }

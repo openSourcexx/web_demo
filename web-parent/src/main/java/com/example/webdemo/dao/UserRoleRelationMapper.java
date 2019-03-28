@@ -4,6 +4,8 @@ import com.example.webdemo.beans.UserRoleRelation;
 import com.example.webdemo.beans.UserRoleRelationExample;
 import java.util.List;
 
+import com.example.webdemo.common.vo.BaseVo;
+import com.example.webdemo.vo.request.AllotUserRolesRequest;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -30,4 +32,6 @@ public interface UserRoleRelationMapper {
     int updateByPrimaryKeySelective(UserRoleRelation record);
 
     int updateByPrimaryKey(UserRoleRelation record);
+
+    int insertBatch(List<UserRoleRelation> req);
 }
