@@ -59,7 +59,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
     public BaseVo save(User user) {
         try {
             user.setCreateTime(new Date());
@@ -71,7 +70,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
     public BaseVo remove(List<Integer> ids) {
         UserExample example = new UserExample();
         example.createCriteria().andIdIn(ids);
@@ -83,7 +81,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
     public BaseVo update(User user) {
         try {
             user.setUpdateTime(new Date());

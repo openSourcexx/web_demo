@@ -31,7 +31,6 @@ public class OperatorLogServiceImpl implements OperatorLogService {
     private OperatorLogMapper operatorLogMapper;
 
     @Override
-    @Transactional
     public boolean save(OperatorLog log) {
         try {
             log.setCreateTime(new Date());

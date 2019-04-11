@@ -23,7 +23,6 @@ public class RoleServiceImpl implements RoleService {
     private RoleMapper roleMapper;
 
     @Override
-    @Transactional
     public boolean save(Role role) {
         try {
             return roleMapper.insertSelective(role) == 1;

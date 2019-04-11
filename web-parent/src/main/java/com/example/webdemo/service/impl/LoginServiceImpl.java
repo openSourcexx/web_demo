@@ -24,7 +24,6 @@ public class LoginServiceImpl implements LoginService {
     private UserMapper userMapper;
 
     @Override
-    @Transactional
     public BaseVo register(LoginRequest request) {
         User u = new User();
         BeanUtils.copyProperties(request,u);
