@@ -1,6 +1,7 @@
 package com.example.webdemo.service;
 
 import com.example.webdemo.beans.Role;
+import com.example.webdemo.common.vo.DetailVo;
 import com.example.webdemo.common.vo.PageVo;
 import com.example.webdemo.vo.request.RoleRequest;
 
@@ -33,4 +34,6 @@ public interface RoleService {
      * @return
      */
     boolean update(Role role);
+
+    DetailVo getByRid(Integer id);
 }

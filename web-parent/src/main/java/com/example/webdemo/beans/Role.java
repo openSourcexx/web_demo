@@ -1,6 +1,7 @@
 package com.example.webdemo.beans;
 
 import java.util.Date;
+import java.util.List;
 
 public class Role {
     private Integer id;
@@ -12,6 +13,8 @@ public class Role {
     private Date createTime;
 
     private Date updateTime;
+
+    private List<Permission> permissionList;
 
     public Integer getId() {
         return id;
@@ -51,5 +54,13 @@ public class Role {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public List<Permission> getPermissionList() {
+        return permissionList;
+    }
+
+    public void setPermissionList(List<Permission> permissionList) {
+        this.permissionList = permissionList;
     }
 }

@@ -1,10 +1,13 @@
 package com.example.webdemo.service.impl;
 
+import com.example.webdemo.beans.Permission;
 import com.example.webdemo.beans.Role;
 import com.example.webdemo.beans.RoleExample;
 import com.example.webdemo.common.Page;
 import com.example.webdemo.common.enums.SysCodeEnum;
 import com.example.webdemo.common.exception.DBException;
+import com.example.webdemo.common.vo.DetailVo;
+import com.example.webdemo.dao.PermissionMapper;
 import com.example.webdemo.dao.RoleMapper;
 import com.example.webdemo.service.RoleService;
 import com.example.webdemo.common.vo.PageVo;
@@ -21,6 +24,9 @@ import java.util.List;
 public class RoleServiceImpl implements RoleService {
     @Autowired
     private RoleMapper roleMapper;
+
+    @Autowired
+    private PermissionMapper permissionMapper;
 
     @Override
     public boolean save(Role role) {
@@ -62,5 +68,17 @@ public class RoleServiceImpl implements RoleService {
         } catch (Exception e) {
             throw new DBException(SysCodeEnum.DB_ERR.getCode(),SysCodeEnum.DB_ERR.getDesc(),e);
         }
+    }
+
+    @Override
+    public DetailVo getByRid(Integer id) {
+        DetailVo<Role> vo = new DetailVo<>(true);
+        Role role = roleMapper.selectByPrimaryKey(id);
+
+        // 查询角色拥有权限
+        List<Permission> rolePermitList = permissionMapper.selectPermissionMenuByRid(id);
+        role.setPermissionList(rolePermitList);
+        vo.setData(role);
+        return vo;
     }
 }

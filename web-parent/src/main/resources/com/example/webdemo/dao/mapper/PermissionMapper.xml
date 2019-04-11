@@ -304,12 +304,45 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="selectAll" resultMap="BaseResultMap">
-    SELECT *
+
+  <select id="selectAll" resultMap="PermissionMap">
+    SELECT
+    <include refid="Base_Column_List"/>
     FROM t_permission
   </select>
 
-  <!--自关联一对多-->
+    <!-- 权限自关联 -->
+  <resultMap id="PermissionMap" type="com.example.webdemo.beans.Permission">
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="permit_name" property="permitName" jdbcType="VARCHAR" />
+    <result column="permit_type" property="permitType" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="permit_code" property="permitCode" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="VARCHAR" />
+    <result column="available" property="available" jdbcType="CHAR" />
+    <collection property="permissionList" ofType="com.example.webdemo.beans.Permission"
+                column="id" select="selectChildrenByParentId"/>
+  </resultMap>
+
+  <select id="selectChildrenByParentId" resultMap="PermissionMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM t_permission where parent_id = #{id}
+  </select>
+
+  <select id="selectChildrenById" parameterType="map" resultMap="PermissionMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM t_permission
+    WHERE id = #{id}
+  </select>
+
+
+  <!-- 用户权限自关联一对多 -->
   <!--
     column=左侧的userId和parentId为下一条语句的参数名
     =右侧为这条语句显示的字段名
@@ -330,6 +363,7 @@
                 column="{userId=userId,parentId=id}" select="selectPermissionMenuByUid2"/>
   </resultMap>
 
+  <!-- 查询用户权限 -->
   <select id="selectPermissionMenuByUid" resultMap="PermissionMenuResultMap">
     SELECT DISTINCT p.*,ur.user_id userId from t_permission p
     left JOIN t_role_permission_relation rp
@@ -339,12 +373,49 @@
     where ur.user_id = #{userId} and permit_type = "menu" and p.parent_id = 1
   </select>
 
-  <select id="selectPermissionMenuByUid2" resultMap="BaseResultMap">
+  <select id="selectPermissionMenuByUid2" resultMap="PermissionMenuResultMap">
     SELECT DISTINCT p.*,ur.user_id userId from t_permission p
     left JOIN t_role_permission_relation rp
     on rp.permission_id = p.id
     LEFT JOIN t_user_role_relation ur
     on rp.role_id = ur.role_id
-    where ur.user_id = #{userId} and permit_type = "menu" and p.parent_id = #{parentId,jdbcType=INTEGER}
+    where ur.user_id = #{userId} and p.parent_id = #{parentId,jdbcType=INTEGER}
   </select>
+
+  <!-- 查询角色权限自关联1对多 -->
+  <resultMap id="RolePermitMap" type="com.example.webdemo.beans.Permission">
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="permit_name" property="permitName" jdbcType="VARCHAR" />
+    <result column="permit_type" property="permitType" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="permit_code" property="permitCode" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="VARCHAR" />
+    <result column="available" property="available" jdbcType="CHAR" />
+    <collection property="permissionList" ofType="com.example.webdemo.beans.Permission"
+                column="{roleId=roleId,parentId=id}" select="selectPermissionMenuByRid2"/>
+  </resultMap>
+
+  <!-- 查询角色权限 -->
+  <select id="selectPermissionMenuByRid" resultMap="RolePermitMap">
+    SELECT DISTINCT p.*,ur.role_id roleId from t_permission p
+    left JOIN t_role_permission_relation rp
+    on rp.permission_id = p.id
+    LEFT JOIN t_user_role_relation ur
+    on rp.role_id = ur.role_id
+    where ur.role_id = #{roleId} and permit_type = "menu" and p.parent_id = 1
+  </select>
+
+  <select id="selectPermissionMenuByRid2" resultMap="RolePermitMap">
+    SELECT DISTINCT p.*,ur.role_id roleId from t_permission p
+    left JOIN t_role_permission_relation rp
+    on rp.permission_id = p.id
+    LEFT JOIN t_user_role_relation ur
+    on rp.role_id = ur.role_id
+    where ur.role_id = #{roleId} and p.parent_id = #{parentId,jdbcType=INTEGER}
+  </select>
+
 </mapper>

@@ -1,6 +1,7 @@
 package com.example.webdemo.controller;
 
 import com.example.webdemo.beans.Permission;
+import com.example.webdemo.common.vo.DetailVo;
 import com.example.webdemo.service.PermissionService;
 import com.example.webdemo.common.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/permission")
+@RequestMapping("/api/permit")
 public class PermissionController {
 
     @Autowired
@@ -22,8 +23,13 @@ public class PermissionController {
         return permissionService.query(p);
     }
 
-    @RequestMapping("/queryAll")
+    @RequestMapping("/all")
     public List<Permission> queryAll() {
         return permissionService.queryAll();
+    }
+
+    @RequestMapping("/detail")
+    public DetailVo getChildrenByParentId(@RequestBody Permission p) {
+        return permissionService.getChildrenByParentId(p);
     }
 }

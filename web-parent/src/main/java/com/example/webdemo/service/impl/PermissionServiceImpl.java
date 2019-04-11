@@ -2,6 +2,7 @@ package com.example.webdemo.service.impl;
 
 import com.example.webdemo.beans.Permission;
 import com.example.webdemo.beans.PermissionExample;
+import com.example.webdemo.common.vo.DetailVo;
 import com.example.webdemo.dao.PermissionMapper;
 import com.example.webdemo.service.PermissionService;
 import com.example.webdemo.common.vo.PageVo;
@@ -27,7 +28,14 @@ public class PermissionServiceImpl implements PermissionService {
 
     @Override
     public List<Permission> queryAll() {
-       return permissionMapper.selectAll();
+        return permissionMapper.selectAll();
+    }
+
+    @Override
+    public DetailVo getChildrenByParentId(Permission p) {
+        DetailVo<Permission> vo = new DetailVo<>(true);
+        vo.setData(permissionMapper.selectChildrenById(p.getId()));
+        return vo;
     }
 
 }

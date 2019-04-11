@@ -33,10 +33,19 @@ public interface PermissionMapper {
 
     /**
      * 获取用户拥有权限
-     * @param id
+     * @param uid
      * @return
      */
-    List<Permission> selectPermissionMenuByUid(Integer id);
+    List<Permission> selectPermissionMenuByUid(Integer uid);
 
     List<Permission> selectAll();
+
+    /**
+     * 获取角色拥有权限
+     * @param rid
+     * @return
+     */
+    List<Permission> selectPermissionMenuByRid(Integer rid);
+
+    Permission selectChildrenById(@Param("id") Integer id);
 }

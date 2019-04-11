@@ -2,6 +2,7 @@ package com.example.webdemo.controller;
 
 import com.example.webdemo.beans.Role;
 import com.example.webdemo.common.vo.BaseVo;
+import com.example.webdemo.common.vo.DetailVo;
 import com.example.webdemo.service.PermissionService;
 import com.example.webdemo.service.RolePermissionRelationService;
 import com.example.webdemo.service.RoleService;
@@ -46,6 +47,11 @@ public class RoleController {
     @RequestMapping("/query")
     public PageVo query(@RequestBody RoleRequest req) {
         return roleService.query(req);
+    }
+
+    @RequestMapping("/detail")
+    public DetailVo getByRid(@RequestBody RoleRequest req) {
+        return roleService.getByRid(req.getId());
     }
 
     @RequestMapping("/queryAll")
