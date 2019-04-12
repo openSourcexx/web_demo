@@ -304,13 +304,6 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-
-  <select id="selectAll" resultMap="PermissionMap">
-    SELECT
-    <include refid="Base_Column_List"/>
-    FROM t_permission
-  </select>
-
     <!-- 权限自关联 -->
   <resultMap id="PermissionMap" type="com.example.webdemo.beans.Permission">
     <id column="id" property="id" jdbcType="INTEGER" />
@@ -328,6 +321,14 @@
                 column="id" select="selectChildrenByParentId"/>
   </resultMap>
 
+  <!-- 查询所有权限树 -->
+  <select id="selectAllTree" resultMap="PermissionMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM t_permission where permit_type = "menu" and parent_id is null
+  </select>
+
+
   <select id="selectChildrenByParentId" resultMap="PermissionMap">
     SELECT
     <include refid="Base_Column_List"/>
@@ -339,6 +340,13 @@
     <include refid="Base_Column_List"/>
     FROM t_permission
     WHERE id = #{id}
+  </select>
+
+  <!-- 查询所有权限 -->
+  <select id="selectAll" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM t_permission
   </select>
 
 

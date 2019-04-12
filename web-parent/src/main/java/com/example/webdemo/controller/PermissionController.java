@@ -23,10 +23,18 @@ public class PermissionController {
         return permissionService.query(p);
     }
 
+    @RequestMapping("/allTree")
+    public PageVo queryAllTree() {
+        PageVo<Permission> vo = new PageVo<>(true);
+        vo.setList(permissionService.queryAllTree());
+        return vo;
+    }
+
     @RequestMapping("/all")
-    public List<Permission> queryAll() {
+    public PageVo queryAll() {
         return permissionService.queryAll();
     }
+
 
     @RequestMapping("/detail")
     public DetailVo getChildrenByParentId(@RequestBody Permission p) {

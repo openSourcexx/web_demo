@@ -27,14 +27,23 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     @Override
-    public List<Permission> queryAll() {
-        return permissionMapper.selectAll();
+    public List<Permission> queryAllTree() {
+        return permissionMapper.selectAllTree();
     }
 
     @Override
     public DetailVo getChildrenByParentId(Permission p) {
         DetailVo<Permission> vo = new DetailVo<>(true);
         vo.setData(permissionMapper.selectChildrenById(p.getId()));
+        return vo;
+    }
+
+    @Override
+    public PageVo queryAll() {
+        PageVo<Permission> vo = new PageVo<>(true);
+        vo.setList(permissionMapper.selectAll());
+        PermissionExample example = new PermissionExample();
+        vo.setTotal(permissionMapper.countByExample(example));
         return vo;
     }
 

@@ -38,8 +38,6 @@ public interface PermissionMapper {
      */
     List<Permission> selectPermissionMenuByUid(Integer uid);
 
-    List<Permission> selectAll();
-
     /**
      * 获取角色拥有权限
      * @param rid
@@ -47,5 +45,23 @@ public interface PermissionMapper {
      */
     List<Permission> selectPermissionMenuByRid(Integer rid);
 
+    /**
+     * 查询子权限树
+     * @param id
+     * @return
+     */
     Permission selectChildrenById(@Param("id") Integer id);
+
+    /**
+     * 查询所有权限
+     * @return
+     */
+    List<Permission> selectAll();
+
+    /**
+     * 查询所有权限树
+     * @return
+     */
+    List<Permission> selectAllTree();
+
 }
