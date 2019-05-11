@@ -1,6 +1,14 @@
-package com.example.webdemo.common.utils;
+package com.example.webdemo;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.Writer;
 
 /**
  * @author tangaq
@@ -12,20 +20,27 @@ public class ColumnToBean {
     }
 
     private static void readFile() {
-        String src = "column.txt";
-        String des = "bean.txt";
+        String src = "com/example/webdemo/dao/mapper/column.txt";
+        String des = "com/example/webdemo/dao/mapper/bean.txt";
 
         InputStream inputStream = ColumnToBean.class.getClassLoader().getResourceAsStream(src);
+        String path = ColumnToBean.class.getClassLoader()
+            .getResource(des)
+            .getPath();
         Reader in = new InputStreamReader(inputStream);
         BufferedReader reader = new BufferedReader(in);
         OutputStream outputStream = null;
         try {
-            outputStream = new FileOutputStream("G:/aMytest_proj/demo/src/main/resources/bean.txt");
+            outputStream = new FileOutputStream(path);
+
             Writer writer = new OutputStreamWriter(outputStream);
             String line = reader.readLine();
-            while (line!= null) {
+            while (line != null) {
                 String bean = setField(line);
                 writer.write(bean+";\n");
+                // System.out.println("private String "+bean); // private String bean
+                // System.out.println("\""+bean+"\":"+"1"+"\","); // "bean":"1"
+                System.out.println("\"" + bean + "\":1,"); // "bean":"1"
                 writer.flush();
                 line = reader.readLine();
             }
@@ -34,7 +49,6 @@ public class ColumnToBean {
         } finally {
             try {
                 inputStream.close();
-                outputStream.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -57,4 +71,5 @@ public class ColumnToBean {
         }
         return sb.toString();
     }
+
 }
