@@ -23,7 +23,8 @@ public class ColumnToBean {
         String src = "com/example/webdemo/dao/mapper/column.txt";
         String des = "com/example/webdemo/dao/mapper/bean.txt";
 
-        InputStream inputStream = ColumnToBean.class.getClassLoader().getResourceAsStream(src);
+        InputStream inputStream = ColumnToBean.class.getClassLoader()
+            .getResourceAsStream(src);
         String path = ColumnToBean.class.getClassLoader()
             .getResource(des)
             .getPath();
@@ -37,10 +38,12 @@ public class ColumnToBean {
             String line = reader.readLine();
             while (line != null) {
                 String bean = setField(line);
-                writer.write(bean+";\n");
+                writer.write(bean + ";\n");
                 // System.out.println("private String "+bean); // private String bean
-                // System.out.println("\""+bean+"\":"+"1"+"\","); // "bean":"1"
-                System.out.println("\"" + bean + "\":1,"); // "bean":"1"
+                //System.out.println("\""+bean+"\":"+"\"1"+"\","); // "bean":"1"
+                // System.out.println("\"" + bean + "\":1,"); // "bean":"1"
+                //setAndGetMethod(bean); // setM(m.getM())
+                setMethod(bean); // setM();
                 writer.flush();
                 line = reader.readLine();
             }
@@ -55,6 +58,32 @@ public class ColumnToBean {
         }
     }
 
+    private static void setMethod(String bean) {
+        StringBuilder builder = new StringBuilder("m.set");
+        builder.append(String.valueOf(bean.charAt(0))
+            .toUpperCase());
+        builder.append(bean.substring(1));
+        builder.append("(");
+        builder.append(");");
+        System.out.println(builder.toString());
+    }
+
+    private static void setAndGetMethod(String bean) {
+        StringBuilder builder = new StringBuilder("m.set");
+        builder.append(String.valueOf(bean.charAt(0))
+            .toUpperCase());
+        builder.append(bean.substring(1));
+        builder.append("(");
+        builder.append("m.get");
+        builder.append(String.valueOf(bean.charAt(0))
+            .toUpperCase());
+        builder.append(bean.substring(1));
+        builder.append("(");
+        builder.append(")");
+        builder.append(");");
+        System.out.println(builder.toString());
+    }
+
     public static String setField(String field) {
         if (!field.contains("_")) {
             return field;
@@ -64,8 +93,9 @@ public class ColumnToBean {
         sb.append(split[0]);
         for (int i = 1; i < split.length; i++) {
             String s = split[i];
-            sb.append(String.valueOf(s.charAt(0)).toUpperCase());
-            for (int j = 1; j < s.length();j ++) {
+            sb.append(String.valueOf(s.charAt(0))
+                .toUpperCase());
+            for (int j = 1; j < s.length(); j++) {
                 sb.append(String.valueOf(s.charAt(j)));
             }
         }
