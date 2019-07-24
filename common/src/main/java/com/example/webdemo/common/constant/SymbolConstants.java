@@ -1,0 +1,54 @@
+package com.example.webdemo.common.constant;
+
+/**
+ * 符号常量
+ *
+ * @author tangaq
+ * @since 2019/7/22 20:43
+ */
+public class SymbolConstants {
+    private SymbolConstants() {
+    }
+
+    /** 反斜杠 */
+    public static final String BACKSLASH = "/";
+
+    /** 斜杠 */
+    public static final String SLASH = "\\";
+
+    /** 逗号 */
+    public static final String COMMA = ",";
+
+    /** 竖线 */
+    public static final String VERTICAL_LINE = "|";
+
+    /** 句号 */
+    public static final String PERIOD = ".";
+
+    /** 负号 */
+    public static final String MINUS = "-";
+
+    /** 冒号 */
+    public static final String COLON = ":";
+
+    /** 下划线 */
+    public static final String UNDERLINE = "_";
+
+    /** 和 */
+    public static final String AND = "&";
+
+    /** 等号 */
+    public static final String EQUAL = "=";
+
+    /** 左大括号 */
+    public static final String OPEN_BRACE = "{";
+
+    /** 右大括号 */
+    public static final String CLOSE_BRACE = "}";
+
+    /** 左方括号 */
+    public static final String OPEN_BRACKET = "[";
+
+    /** 右方括号 */
+    public static final String CLOSE_BRACKET = "]";
+}
