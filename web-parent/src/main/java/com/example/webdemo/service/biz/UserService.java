@@ -1,11 +1,11 @@
-package com.example.webdemo.service;
+package com.example.webdemo.service.biz;
+
+import java.util.List;
 
 import com.example.webdemo.beans.User;
 import com.example.webdemo.common.vo.BaseVo;
 import com.example.webdemo.common.vo.PageVo;
 import com.example.webdemo.vo.request.UserRequest;
-
-import java.util.List;
 
 public interface UserService {
     /**

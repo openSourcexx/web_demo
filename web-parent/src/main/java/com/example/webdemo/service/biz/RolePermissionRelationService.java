@@ -1,8 +1,8 @@
-package com.example.webdemo.service;
-
-import com.example.webdemo.beans.RolePermissionRelation;
+package com.example.webdemo.service.biz;
 
 import java.util.List;
+
+import com.example.webdemo.beans.RolePermissionRelation;
 
 public interface RolePermissionRelationService {
     /**

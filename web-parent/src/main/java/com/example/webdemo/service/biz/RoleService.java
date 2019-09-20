@@ -1,11 +1,11 @@
-package com.example.webdemo.service;
+package com.example.webdemo.service.biz;
+
+import java.util.List;
 
 import com.example.webdemo.beans.Role;
 import com.example.webdemo.common.vo.DetailVo;
 import com.example.webdemo.common.vo.PageVo;
 import com.example.webdemo.vo.request.RoleRequest;
-
-import java.util.List;
 
 public interface RoleService {
     /**

@@ -1,15 +1,16 @@
 package com.example.webdemo.service.impl;
 
-import com.example.webdemo.beans.Permission;
-import com.example.webdemo.beans.PermissionExample;
-import com.example.webdemo.common.vo.DetailVo;
-import com.example.webdemo.dao.PermissionMapper;
-import com.example.webdemo.service.PermissionService;
-import com.example.webdemo.common.vo.PageVo;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.example.webdemo.beans.Permission;
+import com.example.webdemo.beans.PermissionExample;
+import com.example.webdemo.common.vo.DetailVo;
+import com.example.webdemo.common.vo.PageVo;
+import com.example.webdemo.dao.PermissionMapper;
+import com.example.webdemo.service.biz.PermissionService;
 
 @Service
 public class PermissionServiceImpl implements PermissionService {

@@ -1,20 +1,22 @@
 package com.example.webdemo.controller;
 
-import com.example.webdemo.beans.User;
-import com.example.webdemo.common.vo.BaseVo;
-import com.example.webdemo.common.vo.PageVo;
-import com.example.webdemo.service.UserRoleRelationService;
-import com.example.webdemo.service.UserService;
-import com.example.webdemo.vo.request.AllotUserRolesRequest;
-import com.example.webdemo.vo.request.UserDelRequest;
-import com.example.webdemo.vo.request.UserRequest;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.webdemo.beans.User;
+import com.example.webdemo.common.vo.BaseVo;
+import com.example.webdemo.common.vo.PageVo;
+import com.example.webdemo.service.biz.UserRoleRelationService;
+import com.example.webdemo.service.biz.UserService;
+import com.example.webdemo.vo.request.AllotUserRolesRequest;
+import com.example.webdemo.vo.request.UserDelRequest;
+import com.example.webdemo.vo.request.UserRequest;
+
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/user")

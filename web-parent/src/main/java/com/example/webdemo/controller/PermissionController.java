@@ -1,15 +1,14 @@
 package com.example.webdemo.controller;
 
-import com.example.webdemo.beans.Permission;
-import com.example.webdemo.common.vo.DetailVo;
-import com.example.webdemo.service.PermissionService;
-import com.example.webdemo.common.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.example.webdemo.beans.Permission;
+import com.example.webdemo.common.vo.DetailVo;
+import com.example.webdemo.common.vo.PageVo;
+import com.example.webdemo.service.biz.PermissionService;
 
 @RestController
 @RequestMapping("/api/permit")
