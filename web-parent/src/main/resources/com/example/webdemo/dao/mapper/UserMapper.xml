@@ -1,63 +1,64 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.example.webdemo.dao.UserMapper" >
-  <resultMap id="BaseResultMap" type="com.example.webdemo.beans.User" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="login_account" property="loginAccount" jdbcType="VARCHAR" />
-    <result column="login_password" property="loginPassword" jdbcType="VARCHAR" />
-    <result column="user_name" property="userName" jdbcType="VARCHAR" />
-    <result column="gender" property="gender" jdbcType="CHAR" />
-    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
-    <result column="user_status" property="userStatus" jdbcType="CHAR" />
-    <result column="organ_id" property="organId" jdbcType="INTEGER" />
-    <result column="token" property="token" jdbcType="VARCHAR" />
-    <result column="tenant_id" property="tenantId" jdbcType="VARCHAR" />
-    <result column="sys_id" property="sysId" jdbcType="VARCHAR" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.webdemo.dao.UserMapper">
+    <resultMap id="BaseResultMap" type="com.example.webdemo.beans.User">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="login_account" jdbcType="VARCHAR" property="loginAccount"/>
+        <result column="login_password" jdbcType="VARCHAR" property="loginPassword"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="gender" jdbcType="CHAR" property="gender"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="user_status" jdbcType="CHAR" property="userStatus"/>
+        <result column="organ_id" jdbcType="INTEGER" property="organId"/>
+        <result column="token" jdbcType="VARCHAR" property="token"/>
+        <result column="tenant_id" jdbcType="VARCHAR" property="tenantId"/>
+        <result column="sys_id" jdbcType="VARCHAR" property="sysId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
   </resultMap>
 
   <!-- 用户角色 1对多 -->
-  <resultMap id="UserRoleMap" type="com.example.webdemo.beans.User" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="login_account" property="loginAccount" jdbcType="VARCHAR" />
-    <result column="login_password" property="loginPassword" jdbcType="VARCHAR" />
-    <result column="user_name" property="userName" jdbcType="VARCHAR" />
-    <result column="gender" property="gender" jdbcType="CHAR" />
-    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
-    <result column="user_status" property="userStatus" jdbcType="CHAR" />
-    <result column="organ_id" property="organId" jdbcType="INTEGER" />
-    <result column="token" property="token" jdbcType="VARCHAR" />
-    <result column="tenant_id" property="tenantId" jdbcType="VARCHAR" />
-    <result column="sys_id" property="sysId" jdbcType="VARCHAR" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
-    <collection property="roleList" ofType="com.example.webdemo.beans.Role">
-      <id column="roleId" property="id" jdbcType="INTEGER" />
-      <result column="role_name" property="roleName" jdbcType="VARCHAR" />
-      <result column="description" property="description" jdbcType="VARCHAR" />
+    <resultMap id="UserRoleMap" type="com.example.webdemo.beans.User">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="login_account" jdbcType="VARCHAR" property="loginAccount"/>
+        <result column="login_password" jdbcType="VARCHAR" property="loginPassword"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="gender" jdbcType="CHAR" property="gender"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="user_status" jdbcType="CHAR" property="userStatus"/>
+        <result column="organ_id" jdbcType="INTEGER" property="organId"/>
+        <result column="token" jdbcType="VARCHAR" property="token"/>
+        <result column="tenant_id" jdbcType="VARCHAR" property="tenantId"/>
+        <result column="sys_id" jdbcType="VARCHAR" property="sysId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <collection ofType="com.example.webdemo.beans.Role" property="roleList">
+            <id column="roleId" jdbcType="INTEGER" property="id"/>
+            <result column="role_name" jdbcType="VARCHAR" property="roleName"/>
+            <result column="description" jdbcType="VARCHAR" property="description"/>
     </collection>
   </resultMap>
 
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -68,25 +69,26 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
                   and ${criterion.condition}
                 </when>
-                <when test="criterion.singleValue" >
+                                <when test="criterion.singleValue">
                   and ${criterion.condition} #{criterion.value}
                 </when>
-                <when test="criterion.betweenValue" >
+                                <when test="criterion.betweenValue">
                   and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                 </when>
-                <when test="criterion.listValue" >
+                                <when test="criterion.listValue">
                   and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
                     #{listItem}
                   </foreach>
                 </when>
@@ -97,41 +99,41 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List" >
+    <sql id="Base_Column_List">
     id, login_account, login_password, user_name, gender, mobile, user_status, organ_id, 
     token, tenant_id, sys_id, create_time, update_time
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.webdemo.beans.UserExample" >
+    <select id="selectByExample" parameterType="com.example.webdemo.beans.UserExample" resultMap="BaseResultMap">
     select
-    <if test="distinct" >
+        <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
     from t_user
-    <if test="_parameter != null" >
+        <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null" >
+        <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from t_user
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.example.webdemo.beans.UserExample" >
+    <delete id="deleteByExample" parameterType="com.example.webdemo.beans.UserExample">
     delete from t_user
-    <if test="_parameter != null" >
+        <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.example.webdemo.beans.User" >
+    <insert id="insert" parameterType="com.example.webdemo.beans.User">
     insert into t_user (id, login_account, login_password, 
       user_name, gender, mobile, 
       user_status, organ_id, token, 
@@ -143,145 +145,145 @@
       #{tenantId,jdbcType=VARCHAR}, #{sysId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.webdemo.beans.User" >
+    <insert id="insertSelective" parameterType="com.example.webdemo.beans.User">
     insert into t_user
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
         id,
       </if>
-      <if test="loginAccount != null" >
+            <if test="loginAccount != null">
         login_account,
       </if>
-      <if test="loginPassword != null" >
+            <if test="loginPassword != null">
         login_password,
       </if>
-      <if test="userName != null" >
+            <if test="userName != null">
         user_name,
       </if>
-      <if test="gender != null" >
+            <if test="gender != null">
         gender,
       </if>
-      <if test="mobile != null" >
+            <if test="mobile != null">
         mobile,
       </if>
-      <if test="userStatus != null" >
+            <if test="userStatus != null">
         user_status,
       </if>
-      <if test="organId != null" >
+            <if test="organId != null">
         organ_id,
       </if>
-      <if test="token != null" >
+            <if test="token != null">
         token,
       </if>
-      <if test="tenantId != null" >
+            <if test="tenantId != null">
         tenant_id,
       </if>
-      <if test="sysId != null" >
+            <if test="sysId != null">
         sys_id,
       </if>
-      <if test="createTime != null" >
+            <if test="createTime != null">
         create_time,
       </if>
-      <if test="updateTime != null" >
+            <if test="updateTime != null">
         update_time,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="loginAccount != null" >
+            <if test="loginAccount != null">
         #{loginAccount,jdbcType=VARCHAR},
       </if>
-      <if test="loginPassword != null" >
+            <if test="loginPassword != null">
         #{loginPassword,jdbcType=VARCHAR},
       </if>
-      <if test="userName != null" >
+            <if test="userName != null">
         #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="gender != null" >
+            <if test="gender != null">
         #{gender,jdbcType=CHAR},
       </if>
-      <if test="mobile != null" >
+            <if test="mobile != null">
         #{mobile,jdbcType=VARCHAR},
       </if>
-      <if test="userStatus != null" >
+            <if test="userStatus != null">
         #{userStatus,jdbcType=CHAR},
       </if>
-      <if test="organId != null" >
+            <if test="organId != null">
         #{organId,jdbcType=INTEGER},
       </if>
-      <if test="token != null" >
+            <if test="token != null">
         #{token,jdbcType=VARCHAR},
       </if>
-      <if test="tenantId != null" >
+            <if test="tenantId != null">
         #{tenantId,jdbcType=VARCHAR},
       </if>
-      <if test="sysId != null" >
+            <if test="sysId != null">
         #{sysId,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null" >
+            <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null" >
+            <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.example.webdemo.beans.UserExample" resultType="java.lang.Integer" >
+    <select id="countByExample" parameterType="com.example.webdemo.beans.UserExample" resultType="java.lang.Integer">
     select count(*) from t_user
-    <if test="_parameter != null" >
+        <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map" >
+    <update id="updateByExampleSelective" parameterType="map">
     update t_user
-    <set >
-      <if test="record.id != null" >
+        <set>
+            <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.loginAccount != null" >
+            <if test="record.loginAccount != null">
         login_account = #{record.loginAccount,jdbcType=VARCHAR},
       </if>
-      <if test="record.loginPassword != null" >
+            <if test="record.loginPassword != null">
         login_password = #{record.loginPassword,jdbcType=VARCHAR},
       </if>
-      <if test="record.userName != null" >
+            <if test="record.userName != null">
         user_name = #{record.userName,jdbcType=VARCHAR},
       </if>
-      <if test="record.gender != null" >
+            <if test="record.gender != null">
         gender = #{record.gender,jdbcType=CHAR},
       </if>
-      <if test="record.mobile != null" >
+            <if test="record.mobile != null">
         mobile = #{record.mobile,jdbcType=VARCHAR},
       </if>
-      <if test="record.userStatus != null" >
+            <if test="record.userStatus != null">
         user_status = #{record.userStatus,jdbcType=CHAR},
       </if>
-      <if test="record.organId != null" >
+            <if test="record.organId != null">
         organ_id = #{record.organId,jdbcType=INTEGER},
       </if>
-      <if test="record.token != null" >
+            <if test="record.token != null">
         token = #{record.token,jdbcType=VARCHAR},
       </if>
-      <if test="record.tenantId != null" >
+            <if test="record.tenantId != null">
         tenant_id = #{record.tenantId,jdbcType=VARCHAR},
       </if>
-      <if test="record.sysId != null" >
+            <if test="record.sysId != null">
         sys_id = #{record.sysId,jdbcType=VARCHAR},
       </if>
-      <if test="record.createTime != null" >
+            <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.updateTime != null" >
+            <if test="record.updateTime != null">
         update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    <if test="_parameter != null" >
+        <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map" >
+    <update id="updateByExample" parameterType="map">
     update t_user
     set id = #{record.id,jdbcType=INTEGER},
       login_account = #{record.loginAccount,jdbcType=VARCHAR},
@@ -296,53 +298,53 @@
       sys_id = #{record.sysId,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP}
-    <if test="_parameter != null" >
+        <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.webdemo.beans.User" >
+    <update id="updateByPrimaryKeySelective" parameterType="com.example.webdemo.beans.User">
     update t_user
-    <set >
-      <if test="loginAccount != null" >
+        <set>
+            <if test="loginAccount != null">
         login_account = #{loginAccount,jdbcType=VARCHAR},
       </if>
-      <if test="loginPassword != null" >
+            <if test="loginPassword != null">
         login_password = #{loginPassword,jdbcType=VARCHAR},
       </if>
-      <if test="userName != null" >
+            <if test="userName != null">
         user_name = #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="gender != null" >
+            <if test="gender != null">
         gender = #{gender,jdbcType=CHAR},
       </if>
-      <if test="mobile != null" >
+            <if test="mobile != null">
         mobile = #{mobile,jdbcType=VARCHAR},
       </if>
-      <if test="userStatus != null" >
+            <if test="userStatus != null">
         user_status = #{userStatus,jdbcType=CHAR},
       </if>
-      <if test="organId != null" >
+            <if test="organId != null">
         organ_id = #{organId,jdbcType=INTEGER},
       </if>
-      <if test="token != null" >
+            <if test="token != null">
         token = #{token,jdbcType=VARCHAR},
       </if>
-      <if test="tenantId != null" >
+            <if test="tenantId != null">
         tenant_id = #{tenantId,jdbcType=VARCHAR},
       </if>
-      <if test="sysId != null" >
+            <if test="sysId != null">
         sys_id = #{sysId,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null" >
+            <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null" >
+            <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.webdemo.beans.User" >
+    <update id="updateByPrimaryKey" parameterType="com.example.webdemo.beans.User">
     update t_user
     set login_account = #{loginAccount,jdbcType=VARCHAR},
       login_password = #{loginPassword,jdbcType=VARCHAR},
@@ -362,29 +364,29 @@
   <!-- 查询单个 -->
   <select id="selectByUser" parameterType="com.example.webdemo.beans.User" resultMap="BaseResultMap">
     SELECT
-    <include refid="Base_Column_List"/>
+      <include refid="Base_Column_List"/>
     FROM
     t_user
     <where>
-      <if test="id != null" >
+        <if test="id != null">
         and id = #{id,jdbcType=INTEGER}
       </if>
-      <if test="loginAccount != null" >
+        <if test="loginAccount != null">
         and login_account = #{loginAccount,jdbcType=VARCHAR}
       </if>
-      <if test="loginPassword != null" >
+        <if test="loginPassword != null">
         and login_password = #{loginPassword,jdbcType=VARCHAR}
       </if>
-      <if test="userName != null" >
+        <if test="userName != null">
         and user_name = #{userName,jdbcType=VARCHAR}
       </if>
-      <if test="mobile != null" >
+        <if test="mobile != null">
         and mobile = #{mobile,jdbcType=VARCHAR}
       </if>
-      <if test="userStatus != null" >
+        <if test="userStatus != null">
         and user_status = #{userStatus,jdbcType=CHAR}
       </if>
-      <if test="organId != null" >
+        <if test="organId != null">
         and organ_id = #{organId,jdbcType=INTEGER}
       </if>
     </where>
@@ -411,22 +413,22 @@
     LEFT JOIN t_role r
     on ur.role_id = r.id
     <where>
-      <if test="record.id != null" >
+        <if test="record.id != null">
         and id = #{record.id,jdbcType=INTEGER}
       </if>
-      <if test="record.loginAccount != null" >
+        <if test="record.loginAccount != null">
         and login_account = #{record.loginAccount,jdbcType=VARCHAR}
       </if>
-      <if test="record.loginPassword != null" >
+        <if test="record.loginPassword != null">
         and login_password = #{record.loginPassword,jdbcType=VARCHAR}
       </if>
-      <if test="record.userName != null" >
+        <if test="record.userName != null">
         and user_name = #{record.userName,jdbcType=VARCHAR}
       </if>
-      <if test="record.mobile != null" >
+        <if test="record.mobile != null">
         and mobile = #{record.mobile,jdbcType=VARCHAR}
       </if>
-      <if test="record.organId != null" >
+        <if test="record.organId != null">
         and organ_id = #{record.organId,jdbcType=INTEGER}
       </if>
     </where>
@@ -443,22 +445,22 @@
     LEFT JOIN t_role r
     on ur.role_id = r.id
     <where>
-      <if test="record.id != null" >
+        <if test="record.id != null">
         and id = #{record.id,jdbcType=INTEGER}
       </if>
-      <if test="record.loginAccount != null" >
+        <if test="record.loginAccount != null">
         and login_account = #{record.loginAccount,jdbcType=VARCHAR}
       </if>
-      <if test="record.loginPassword != null" >
+        <if test="record.loginPassword != null">
         and login_password = #{record.loginPassword,jdbcType=VARCHAR}
       </if>
-      <if test="record.userName != null" >
+        <if test="record.userName != null">
         and user_name = #{record.userName,jdbcType=VARCHAR}
       </if>
-      <if test="record.mobile != null" >
+        <if test="record.mobile != null">
         and mobile = #{record.mobile,jdbcType=VARCHAR}
       </if>
-      <if test="record.organId != null" >
+        <if test="record.organId != null">
         and organ_id = #{record.organId,jdbcType=INTEGER}
       </if>
     </where>
