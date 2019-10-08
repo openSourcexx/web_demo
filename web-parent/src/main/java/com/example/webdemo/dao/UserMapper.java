@@ -2,12 +2,14 @@ package com.example.webdemo.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.example.webdemo.beans.User;
 import com.example.webdemo.beans.UserExample;
 import com.example.webdemo.dao.mapper.CommonMapper;
 
+@Mapper
 public interface UserMapper extends CommonMapper<User> {
     int countByExample(UserExample example);
 

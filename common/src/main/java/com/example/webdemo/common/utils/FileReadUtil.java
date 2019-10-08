@@ -2,6 +2,7 @@ package com.example.webdemo.common.utils;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -11,7 +12,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import com.example.webdemo.common.constant.SymbolConstants;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,6 +28,7 @@ public class FileReadUtil {
     /*
      * 本地路径
      */
+    @Value("${FileRead.LOCAL_PATH}")
     public static final String LOCAL_PATH = "E://";
 
     public List<String> readFile(String fileName) {
@@ -97,6 +102,39 @@ public class FileReadUtil {
         } catch (IOException e) {
         }
         return map;
+    }
+
+    public static void main(String[] args) throws IOException {
+        write();
+    }
+
+    private static void write() throws IOException {
+        File file = new File(LOCAL_PATH + "bb.txt");
+        int i = 1;
+        String a = "1119090609385278216";
+        StringBuilder sb;
+        FileOutputStream os = new FileOutputStream(file);
+        while (i <= 500000) {
+            sb = new StringBuilder();
+            sb.append(a + i);
+            sb.append(SymbolConstants.VERTICAL_LINE);
+            sb.append(i);
+            sb.append(SymbolConstants.VERTICAL_LINE);
+            sb.append("20190809");
+            sb.append(SymbolConstants.VERTICAL_LINE);
+            sb.append(i);
+            sb.append(SymbolConstants.VERTICAL_LINE);
+            sb.append(i);
+            sb.append(SymbolConstants.VERTICAL_LINE);
+            sb.append(i);
+            sb.append(SymbolConstants.VERTICAL_LINE);
+            sb.append(i);
+            sb.append("\n");
+            os.write(sb.toString()
+                .getBytes());
+            i++;
+        }
+        os.close();
     }
 
 }
