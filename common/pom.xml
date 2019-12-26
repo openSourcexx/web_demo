@@ -11,4 +11,17 @@
 	<artifactId>common</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
+    <properties>
+        <easypoi.version>4.0.0</easypoi.version>
+        <httpcomponents.version>4.5.10</httpcomponents.version>
+        <spring-retry.version>1.2.4.RELEASE</spring-retry.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>${httpcomponents.version}</version>
+        </dependency>
+    </dependencies>
 </project>

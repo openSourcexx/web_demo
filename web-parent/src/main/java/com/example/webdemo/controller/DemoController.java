@@ -1,7 +1,10 @@
 package com.example.webdemo.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.webdemo.service.biz.DemoBiz;
 
 /**
  * todo
@@ -12,8 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class DemoController {
+    @Autowired
+    private DemoBiz demoBiz;
+
     @RequestMapping("/demo")
     public void demo() {
-
+        demoBiz.testRpcConn();
     }
 }
