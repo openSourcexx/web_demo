@@ -1,7 +1,9 @@
 package com.example.webdemo.aop;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -37,21 +39,35 @@ public class BasicAop {
 
     /**
      * 前置通知
+     *
      * @param joinPoint
      * @param basicLog
      */
     @Before("log() && @annotation(basicLog)")
-    public void before(JoinPoint joinPoint,BasicLog basicLog) {
+    public void before(JoinPoint joinPoint, BasicLog basicLog) {
 
+    }
+
+    /***
+     * 环绕通知,异常后可不执行后续方法
+     * @param jp
+     * @param basicLog
+     * @return
+     * @throws Throwable
+     */
+    @Around(value = "@annotation(basicLog)")
+    public Object aroundMethod(ProceedingJoinPoint jp, BasicLog basicLog) throws Throwable {
+        return jp.proceed();
     }
 
     /**
      * 后置通知
+     *
      * @param joinPoint
      * @param basicLog
      */
     @After("log() && @annotation(basicLog)")
-    public void after(JoinPoint joinPoint,BasicLog basicLog) {
+    public void after(JoinPoint joinPoint, BasicLog basicLog) {
         // 用户登陆校验
         OperatorLog log = new OperatorLog();
         log.setContent(basicLog.value());
@@ -60,7 +76,7 @@ public class BasicAop {
         try {
             logService.save(log);
         } catch (Exception e) {
-            logger.error("新增操作日志失败",e);
+            logger.error("新增操作日志失败", e);
         }
     }
 }
