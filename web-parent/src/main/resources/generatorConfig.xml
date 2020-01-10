@@ -11,11 +11,11 @@
     <!-- 配置table表信息内容体，targetRuntime指定采用MyBatis3的版本 -->
     <context id="tables" targetRuntime="MyBatis3">
 
-        <!--<plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
             <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
             <property name="forceAnnotation" value="true"/>
             <property name="caseSensitive" value="true"/>
-        </plugin>-->
+        </plugin>
 
         <!-- optional，旨在创建class时，对注释进行控制，false生成注释,true无注释 -->
         <commentGenerator>
@@ -58,7 +58,7 @@
         </javaClientGenerator>
 
         <!-- 数据库表名及对应的Java模型类名 -->
-        <table tableName="credit_file_repay" domainObjectName="CreditFileRepay"
+        <table tableName="t_demo" domainObjectName="DemoDo"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"

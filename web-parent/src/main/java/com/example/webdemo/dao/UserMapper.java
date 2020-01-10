@@ -6,27 +6,10 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.example.webdemo.beans.User;
-import com.example.webdemo.beans.UserExample;
-import com.example.webdemo.dao.mapper.CommonMapper;
+import com.example.webdemo.mybatis.common.CommonMapper;
 
 @Mapper
 public interface UserMapper extends CommonMapper<User> {
-    int countByExample(UserExample example);
-
-    int deleteByExample(UserExample example);
-
-    int deleteByPrimaryKey(Integer id);
-
-    int insertSelective(User record);
-
-    List<User> selectByExample(UserExample example);
-
-    User selectByPrimaryKey(Integer id);
-
-    int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
-
-    int updateByPrimaryKeySelective(User record);
-
     /**
      * 单个查询
      * @param u

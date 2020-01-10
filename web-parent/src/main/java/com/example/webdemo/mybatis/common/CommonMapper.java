@@ -1,4 +1,4 @@
-package com.example.webdemo.dao.mapper;
+package com.example.webdemo.mybatis.common;
 
 import tk.mybatis.mapper.additional.insert.InsertListMapper;
 import tk.mybatis.mapper.annotation.RegisterMapper;
@@ -13,5 +13,7 @@ import tk.mybatis.mapper.common.example.SelectByExampleMapper;
  * @since 2019/9/25 18:36
  */
 @RegisterMapper
-public interface CommonMapper<T> extends Mapper<T>, BaseMapper<T>, SelectByExampleMapper<T>, InsertListMapper<T> {
+public interface CommonMapper<T>
+    extends Mapper<T>, BaseMapper<T>, SelectByExampleMapper<T>, InsertListMapper<T>, UpdateListMapper<T> {
 }
+

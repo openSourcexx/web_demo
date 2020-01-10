@@ -1,0 +1,27 @@
+package com.example.webdemo.mybatis.common;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.UpdateProvider;
+
+import com.example.webdemo.mybatis.provider.UpdateListProvider;
+
+import tk.mybatis.mapper.annotation.RegisterMapper;
+
+/**
+ * 针对于mysql，要求配置url时带上allowMultiQueries=true
+ *
+ * @author tangaq
+ * @since 2020/1/10 13:58
+ */
+@RegisterMapper
+public interface UpdateByPrimaryKeyListMapper<T> {
+    /**
+     * 批量更新，null值会被更新
+     *
+     * @param recordList 记录
+     * @return
+     */
+    @UpdateProvider(type = UpdateListProvider.class, method = "dynamicSQL")
+    int updateByPrimaryKeyList(List<T> recordList);
+}
