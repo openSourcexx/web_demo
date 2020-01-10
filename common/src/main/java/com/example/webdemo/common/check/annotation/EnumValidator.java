@@ -14,7 +14,7 @@ import javax.validation.Payload;
 /**
  * 枚举值校验注解
  *
- * @author tangaq@yunrong.cn
+ * @author tangaq
  * @since 2019/6/19 9:36
  */
 @Documented

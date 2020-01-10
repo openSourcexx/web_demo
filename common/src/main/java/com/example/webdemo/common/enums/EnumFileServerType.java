@@ -6,7 +6,7 @@ import lombok.Getter;
 /**
  * 文件枚举
  *
- * @author tangaq@yunrong.cn
+ * @author tangaq
  * @since 2019/9/20 15:16
  */
 @Getter

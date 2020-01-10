@@ -5,7 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 /**
  * 文件
  *
- * @author tangaq@yunrong.cn
+ * @author tangaq
  * @since 2019/9/20 14:58
  */
 public interface FileBiz {

@@ -12,7 +12,7 @@ import com.example.webdemo.vo.request.FileRequest;
 /**
  * 文件处理
  *
- * @author tangaq@yunrong.cn
+ * @author tangaq
  * @since 2019/9/20 14:53
  */
 @RestController
