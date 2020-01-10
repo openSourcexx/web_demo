@@ -5,9 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import tk.mybatis.spring.annotation.MapperScan;
 
-@SpringBootApplication
-// 扫描mapper
-@MapperScan(basePackages = {"com.example.webdemo.dao.**"})
+@SpringBootApplication(scanBasePackages = {"com.example.webdemo.**"})
+@MapperScan("com.example.webdemo.dao.**")
 public class WebDemoApplication {
 
 	public static void main(String[] args) {

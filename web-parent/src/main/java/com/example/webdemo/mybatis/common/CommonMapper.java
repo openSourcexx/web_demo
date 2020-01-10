@@ -1,5 +1,7 @@
 package com.example.webdemo.mybatis.common;
 
+import com.example.webdemo.mybatis.list.UpdateListMapper;
+
 import tk.mybatis.mapper.additional.insert.InsertListMapper;
 import tk.mybatis.mapper.annotation.RegisterMapper;
 import tk.mybatis.mapper.common.BaseMapper;

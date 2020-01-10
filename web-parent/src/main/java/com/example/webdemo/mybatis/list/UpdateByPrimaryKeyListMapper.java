@@ -1,4 +1,4 @@
-package com.example.webdemo.mybatis.common;
+package com.example.webdemo.mybatis.list;
 
 import java.util.List;
 
@@ -15,13 +15,13 @@ import tk.mybatis.mapper.annotation.RegisterMapper;
  * @since 2020/1/10 13:58
  */
 @RegisterMapper
-public interface UpdateByPrimaryKeySelectiveListMapper<T> {
+public interface UpdateByPrimaryKeyListMapper<T> {
     /**
-     * 批量更新，null值不更新
+     * 批量更新，null值会被更新
      *
      * @param recordList 记录
      * @return
      */
     @UpdateProvider(type = UpdateListProvider.class, method = "dynamicSQL")
-    int updateByPrimaryKeySelectiveList(List<T> recordList);
+    int updateByPrimaryKeyList(List<T> recordList);
 }

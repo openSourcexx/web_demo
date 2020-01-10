@@ -1,4 +1,4 @@
-package com.example.webdemo.mybatis.common;
+package com.example.webdemo.mybatis.list;
 
 import tk.mybatis.mapper.annotation.RegisterMapper;
 
