@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.webdemo.beans.DemoDo;
-import com.example.webdemo.dao.DemoDao;
+import com.example.webdemo.dao.intf.DemoDao;
 import com.example.webdemo.service.biz.DemoBiz;
 
 /**
@@ -27,6 +27,6 @@ public class DemoBizImpl implements DemoBiz {
         a1.setName("b1");
         a1.setAccount("123");
         list.add(a1);
-        demoDao.insertListBySelective(list);
+        demoDao.insertList(list);
     }
 }
