@@ -12,17 +12,36 @@ import java.util.Date;
 public class Bean2JsonUtil {
     public static void main(String[] args) {
         Demo d = new Demo();
-        // bean2Json(CreditFileRepayDto.class);
+        // bean2Json(Demo.class);
         // getBeanField(CreditFundSerialRecordDto.class);
-        setAndGetMethod(Demo.class, "b"); // setM(m.getM())
+        // setAndGetMethod(Demo.class, "b"); // setM(m.getM())
+        bean2BuildQuery(Demo.class); // DemoQuery.builder().build();
+    }
+
+    private static void bean2BuildQuery(Class clazz) {
+        Field[] fields = clazz.getDeclaredFields();
+        String simpleName = clazz.getSimpleName();
+        System.out.println(simpleName);
+        StringBuilder builder = new StringBuilder();
+        builder.append(simpleName);
+        builder.append(".builder()\n");
+        for (int i = 0; i < fields.length; i++) {
+            Field field = fields[i];
+            builder.append("\t.");
+            builder.append(field.getName());
+            builder.append("()\n");
+        }
+        builder.append(".build()");
+        System.out.println(builder.toString());
     }
 
     private static void bean2Json(Class clazz) {
         Field[] fields = clazz.getDeclaredFields();
         StringBuilder builder = new StringBuilder();
+        builder.append("{\n");
         for (int i = 0; i < fields.length; i++) {
             Field field = fields[i];
-            builder.append("\"");
+            builder.append("\t\"");
             builder.append(field.getName());
             builder.append("\" : ");
             getData4Type(builder, field);
@@ -31,6 +50,7 @@ public class Bean2JsonUtil {
             }
             builder.append("\n");
         }
+        builder.append("}");
         System.out.println(builder.toString());
 
     }
