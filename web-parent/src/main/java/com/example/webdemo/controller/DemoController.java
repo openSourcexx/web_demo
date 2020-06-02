@@ -22,4 +22,9 @@ public class DemoController {
     public void demo() {
         demoBiz.testRpcConn();
     }
+
+    @RequestMapping("/b")
+    public void compensate() {
+        demoBiz.compensate();
+    }
 }
