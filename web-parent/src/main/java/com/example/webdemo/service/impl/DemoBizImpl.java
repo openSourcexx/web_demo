@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.webdemo.beans.DemoDo;
+import com.example.webdemo.beans.WfHistTaskActor;
 import com.example.webdemo.common.enums.EnumCompensateType;
 import com.example.webdemo.controller.UUIDUtil;
 import com.example.webdemo.dao.intf.DemoDao;
+import com.example.webdemo.dao.intf.flow.WfHistTaskActorQueryDao;
 import com.example.webdemo.service.biz.DemoBiz;
 import com.example.webdemo.service.biz.compensate.Compensate;
 import com.example.webdemo.service.biz.compensate.CompensateCore;
@@ -24,6 +26,8 @@ import com.example.webdemo.service.biz.compensate.CompensateCore;
 public class DemoBizImpl implements DemoBiz {
     @Autowired
     private DemoDao demoDao;
+    @Autowired
+    private WfHistTaskActorQueryDao wfHistTaskActorQueryDao;
 
     @Autowired
     private CompensateCore compensateCore;
@@ -36,6 +40,13 @@ public class DemoBizImpl implements DemoBiz {
         a1.setAccount("123");
         list.add(a1);
         demoDao.insertList(list);
+    }
+
+    @Override
+    public void otherDb() {
+        WfHistTaskActor q = new WfHistTaskActor();
+        q.setTaskId("pre");
+        List<WfHistTaskActor> wfHistTaskActors = wfHistTaskActorQueryDao.selectByRecord(q);
     }
 
     @Override

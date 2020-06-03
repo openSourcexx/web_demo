@@ -10,4 +10,9 @@ public interface DemoBiz {
     public void testRpcConn();
 
     void compensate();
+
+    /**
+     * 多数据源
+     */
+    void otherDb();
 }

@@ -27,4 +27,9 @@ public class DemoController {
     public void compensate() {
         demoBiz.compensate();
     }
+
+    @RequestMapping("/c")
+    public void otherDb() {
+        demoBiz.otherDb();
+    }
 }

@@ -164,3 +164,10 @@ CREATE TABLE `t_user_role_relation` (
 -- ----------------------------
 INSERT INTO `t_user_role_relation` VALUES ('1', '1', '1', '2019-03-23 17:16:34', null);
 INSERT INTO `t_user_role_relation` VALUES ('2', '2', '2', '2019-03-23 17:17:03', null);
+
+CREATE TABLE `wf_hist_task_actor` (
+  `task_id` varchar(32) NOT NULL COMMENT '任务ID',
+  `actor_id` varchar(100) NOT NULL COMMENT '参与者ID',
+  `tenant_id` varchar(8) DEFAULT NULL,
+  KEY `idx_whta_task_id` (`task_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='历史任务参与者表';
