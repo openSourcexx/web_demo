@@ -1,24 +1,24 @@
 package com.example.webdemo.service.impl;
 
-import java.util.Date;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-
 import com.example.webdemo.beans.Permission;
 import com.example.webdemo.beans.Role;
 import com.example.webdemo.beans.RoleExample;
 import com.example.webdemo.common.Page;
 import com.example.webdemo.common.enums.SysCodeEnum;
 import com.example.webdemo.common.exception.DBException;
+import com.example.webdemo.common.utils.DemoUtil;
 import com.example.webdemo.common.vo.DetailVo;
 import com.example.webdemo.common.vo.PageVo;
 import com.example.webdemo.dao.PermissionMapper;
 import com.example.webdemo.dao.RoleMapper;
 import com.example.webdemo.service.biz.RoleService;
 import com.example.webdemo.vo.request.RoleRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
+import java.util.Date;
+import java.util.List;
 
 @Service
 public class RoleServiceImpl implements RoleService {
@@ -81,4 +81,21 @@ public class RoleServiceImpl implements RoleService {
         vo.setData(role);
         return vo;
     }
+
+    @Override
+    public String mockitoStaticTest() {
+        PageVo vo = new PageVo<Role>(true);
+        RoleExample example = new RoleExample();
+        RoleRequest req = new RoleRequest();
+        req.setRoleName(DemoUtil.m1());
+        System.out.println(req.getRoleName());
+        System.out.println(this.mockitoPrivate());
+
+        return req.getRoleName();
+    }
+
+    private String mockitoPrivate() {
+        return "mm";
+    }
+
 }
