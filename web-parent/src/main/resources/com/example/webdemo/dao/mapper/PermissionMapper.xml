@@ -72,21 +72,22 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Base_Column_List" >
+  <sql id="Base_Column_List">
     id, permit_name, permit_type, parent_id, permit_code, url, create_time, update_time, 
     icon, sort, available
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.webdemo.beans.PermissionExample" >
+  <select id="selectByExample" resultMap="BaseResultMap"
+          parameterType="com.example.webdemo.beans.example.PermissionExample">
     select
-    <if test="distinct" >
+    <if test="distinct">
       distinct
     </if>
-    <include refid="Base_Column_List" />
+    <include refid="Base_Column_List"/>
     from t_permission
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
     </if>
-    <if test="orderByClause != null" >
+    <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
   </select>
@@ -100,10 +101,10 @@
     delete from t_permission
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.example.webdemo.beans.PermissionExample" >
+  <delete id="deleteByExample" parameterType="com.example.webdemo.beans.example.PermissionExample">
     delete from t_permission
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
     </if>
   </delete>
   <insert id="insert" parameterType="com.example.webdemo.beans.Permission" >
@@ -181,24 +182,25 @@
       <if test="icon != null" >
         #{icon,jdbcType=VARCHAR},
       </if>
-      <if test="sort != null" >
+      <if test="sort != null">
         #{sort,jdbcType=VARCHAR},
       </if>
-      <if test="available != null" >
+      <if test="available != null">
         #{available,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.example.webdemo.beans.PermissionExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.example.webdemo.beans.example.PermissionExample"
+          resultType="java.lang.Integer">
     select count(*) from t_permission
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map" >
+  <update id="updateByExampleSelective" parameterType="map">
     update t_permission
-    <set >
-      <if test="record.id != null" >
+    <set>
+      <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.permitName != null" >

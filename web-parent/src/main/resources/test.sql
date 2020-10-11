@@ -15,6 +15,15 @@ Date: 2019-03-24 12:45:40
 
 SET FOREIGN_KEY_CHECKS=0;
 
+DROP TABLE IF EXISTS `t_demo`;
+CREATE TABLE `t_demo` (
+  `id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `account` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 -- ----------------------------
 -- Table structure for t_operator_log
 -- ----------------------------

@@ -1,13 +1,11 @@
 package com.example.webdemo.dao;
 
 import com.example.webdemo.beans.UserRoleRelation;
-import com.example.webdemo.beans.UserRoleRelationExample;
-import java.util.List;
-
-import com.example.webdemo.common.vo.BaseVo;
-import com.example.webdemo.vo.request.AllotUserRolesRequest;
+import com.example.webdemo.beans.example.UserRoleRelationExample;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface UserRoleRelationMapper {

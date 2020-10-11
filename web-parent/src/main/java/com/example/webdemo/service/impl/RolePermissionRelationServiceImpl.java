@@ -1,14 +1,13 @@
 package com.example.webdemo.service.impl;
 
-import java.util.List;
-
+import com.example.webdemo.beans.RolePermissionRelation;
+import com.example.webdemo.beans.example.UserRoleRelationExample;
+import com.example.webdemo.dao.RolePermissionRelationMapper;
+import com.example.webdemo.service.biz.RolePermissionRelationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.webdemo.beans.RolePermissionRelation;
-import com.example.webdemo.beans.RolePermissionRelationExample;
-import com.example.webdemo.dao.RolePermissionRelationMapper;
-import com.example.webdemo.service.biz.RolePermissionRelationService;
+import java.util.List;
 
 @Service
 public class RolePermissionRelationServiceImpl implements RolePermissionRelationService {
@@ -17,7 +16,7 @@ public class RolePermissionRelationServiceImpl implements RolePermissionRelation
 
     @Override
     public List<RolePermissionRelation> queryByRoleId(Integer roleId) {
-        RolePermissionRelationExample example = new RolePermissionRelationExample();
+        UserRoleRelationExample.RolePermissionRelationExample example = new UserRoleRelationExample.RolePermissionRelationExample();
         example.createCriteria().andRoleIdEqualTo(roleId);
         return relationMapper.selectByExample(example);
     }

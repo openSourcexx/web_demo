@@ -1,17 +1,17 @@
 package com.example.webdemo.dao;
 
 import com.example.webdemo.beans.RolePermissionRelation;
-import com.example.webdemo.beans.RolePermissionRelationExample;
-import java.util.List;
-
+import com.example.webdemo.beans.example.UserRoleRelationExample;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 @Mapper
 public interface RolePermissionRelationMapper {
-    int countByExample(RolePermissionRelationExample example);
+    int countByExample(UserRoleRelationExample.RolePermissionRelationExample example);
 
-    int deleteByExample(RolePermissionRelationExample example);
+    int deleteByExample(UserRoleRelationExample.RolePermissionRelationExample example);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -19,13 +19,13 @@ public interface RolePermissionRelationMapper {
 
     int insertSelective(RolePermissionRelation record);
 
-    List<RolePermissionRelation> selectByExample(RolePermissionRelationExample example);
+    List<RolePermissionRelation> selectByExample(UserRoleRelationExample.RolePermissionRelationExample example);
 
     RolePermissionRelation selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(@Param("record") RolePermissionRelation record, @Param("example") RolePermissionRelationExample example);
+    int updateByExampleSelective(@Param("record") RolePermissionRelation record, @Param("example") UserRoleRelationExample.RolePermissionRelationExample example);
 
-    int updateByExample(@Param("record") RolePermissionRelation record, @Param("example") RolePermissionRelationExample example);
+    int updateByExample(@Param("record") RolePermissionRelation record, @Param("example") UserRoleRelationExample.RolePermissionRelationExample example);
 
     int updateByPrimaryKeySelective(RolePermissionRelation record);
 

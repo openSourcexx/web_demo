@@ -69,17 +69,17 @@
   <sql id="Base_Column_List" >
     id, role_name, description, create_time, update_time
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.webdemo.beans.RoleExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.webdemo.beans.example.RoleExample">
     select
-    <if test="distinct" >
+    <if test="distinct">
       distinct
     </if>
-    <include refid="Base_Column_List" />
+    <include refid="Base_Column_List"/>
     from t_role
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
     </if>
-    <if test="orderByClause != null" >
+    <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
     limit #{pageNo},#{pageSize}
@@ -94,10 +94,10 @@
     delete from t_role
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.example.webdemo.beans.RoleExample" >
+  <delete id="deleteByExample" parameterType="com.example.webdemo.beans.example.RoleExample">
     delete from t_role
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
     </if>
   </delete>
   <insert id="insert" parameterType="com.example.webdemo.beans.Role" >
@@ -135,24 +135,25 @@
       <if test="description != null" >
         #{description,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null" >
+      <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.example.webdemo.beans.RoleExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.example.webdemo.beans.example.RoleExample"
+          resultType="java.lang.Integer">
     select count(*) from t_role
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause"/>
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map" >
+  <update id="updateByExampleSelective" parameterType="map">
     update t_role
-    <set >
-      <if test="record.id != null" >
+    <set>
+      <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.roleName != null" >

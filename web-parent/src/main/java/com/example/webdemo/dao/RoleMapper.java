@@ -1,11 +1,11 @@
 package com.example.webdemo.dao;
 
 import com.example.webdemo.beans.Role;
-import com.example.webdemo.beans.RoleExample;
-import java.util.List;
-
+import com.example.webdemo.beans.example.RoleExample;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface RoleMapper {

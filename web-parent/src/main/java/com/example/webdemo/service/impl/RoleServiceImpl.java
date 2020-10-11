@@ -2,7 +2,7 @@ package com.example.webdemo.service.impl;
 
 import com.example.webdemo.beans.Permission;
 import com.example.webdemo.beans.Role;
-import com.example.webdemo.beans.RoleExample;
+import com.example.webdemo.beans.example.RoleExample;
 import com.example.webdemo.common.Page;
 import com.example.webdemo.common.enums.SysCodeEnum;
 import com.example.webdemo.common.exception.DBException;

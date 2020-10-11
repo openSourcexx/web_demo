@@ -1,4 +1,4 @@
-package com.example.webdemo.beans;
+package com.example.webdemo.beans.example;
 
 import java.util.ArrayList;
 import java.util.Date;

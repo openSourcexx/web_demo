@@ -14,13 +14,13 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 
 import static org.mockito.Matchers.any;
 
-@RunWith(PowerMockRunner.class)
+@RunWith(SpringRunner.class)
 @PrepareForTest({DemoUtil.class, RoleServiceImpl.class})
 public class RoleServiceTest {
     @InjectMocks
