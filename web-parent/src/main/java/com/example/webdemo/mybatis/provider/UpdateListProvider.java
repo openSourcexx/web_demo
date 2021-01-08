@@ -33,7 +33,7 @@ public class UpdateListProvider extends MapperTemplate {
      * @return sql语句
      */
     public String updateByPrimaryKeySelectiveList(MappedStatement ms) {
-        return updateList(ms, false, isNotEmpty());
+        return updateList(ms, true, true);
     }
 
     /**

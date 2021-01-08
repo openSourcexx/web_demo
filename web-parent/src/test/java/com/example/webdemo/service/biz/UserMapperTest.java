@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -38,4 +39,19 @@ public class UserMapperTest {
 
     }
 
+    @Test
+    public void batchUpdate() {
+        List<DemoDo> updateList = new ArrayList<>();
+        DemoDo d1 = new DemoDo();
+        d1.setId(1);
+        d1.setAccount("x1");
+        updateList.add(d1);
+        DemoDo d2 = new DemoDo();
+        d2.setId(2);
+        d2.setAccount("x2");
+        d2.setUpdateTime(new Date());
+        updateList.add(d2);
+        int i = demoMapper.updateByPrimaryKeySelectiveList(updateList);
+        System.out.println(">>>>>>>>>>>>>>>>>>>result:" + (i == updateList.size()));
+    }
 }
