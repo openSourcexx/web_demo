@@ -1,7 +1,7 @@
 package com.example.webdemo.mybatis.common;
 
 import com.example.webdemo.mybatis.list.UpdateListMapper;
-
+import com.example.webdemo.mybatis.record.UpdateRecordMapper;
 import tk.mybatis.mapper.additional.insert.InsertListMapper;
 import tk.mybatis.mapper.annotation.RegisterMapper;
 import tk.mybatis.mapper.common.BaseMapper;
@@ -16,6 +16,7 @@ import tk.mybatis.mapper.common.example.SelectByExampleMapper;
  */
 @RegisterMapper
 public interface CommonMapper<T>
-    extends Mapper<T>, BaseMapper<T>, SelectByExampleMapper<T>, InsertListMapper<T>, UpdateListMapper<T> {
+        extends Mapper<T>, BaseMapper<T>, SelectByExampleMapper<T>, InsertListMapper<T>, UpdateListMapper<T>,
+        UpdateRecordMapper<T> {
 }
 
