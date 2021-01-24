@@ -1,17 +1,22 @@
 package com.example.webdemo.controller;
 
+import java.util.Date;
+import java.util.concurrent.ThreadPoolExecutor;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.alibaba.rocketmq.client.producer.SendResult;
+import com.example.webdemo.common.constant.MqConstant;
+import com.example.webdemo.common.mq.Producer;
 import com.example.webdemo.common.utils.Demo;
 import com.example.webdemo.common.utils.GsonUtil;
 import com.example.webdemo.common.utils.HttpRequestUtil;
 import com.example.webdemo.common.utils.ThreadPoolUtils;
 import com.example.webdemo.service.biz.DemoBiz;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Date;
-import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * demo
@@ -58,12 +63,26 @@ public class DemoController {
                 String url = "http://localhost:9090/api/d";
                 try {
                     String s = HttpRequestUtil.sendPost(url, GsonUtil.obj2Json(new Demo()));
-                    System.out.println(Thread.currentThread().getName() + "," + s);
+                    System.out.println(Thread.currentThread()
+                        .getName() + "," + s);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             });
         }
 
+    }
+
+    @Autowired
+    @Qualifier("commonProducer")
+    private Producer producer;
+
+    @RequestMapping("/send")
+    private void send() {
+        Demo demo1 = new Demo();
+        demo1.setName("mq测试1");
+        demo1.setC(new Date());
+        SendResult send = producer.send(MqConstant.TOPIC_DEMO1, MqConstant.TAG_DEMO1,
+            MqConstant.TOPIC_DEMO1 + "|" + MqConstant.TAG_DEMO1, demo1);
     }
 }

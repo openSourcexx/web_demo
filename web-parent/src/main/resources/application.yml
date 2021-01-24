@@ -7,3 +7,7 @@ mybatis:
   mapper-locations: classpath*:com/example/webdemo/dao/mapper/*.xml
 server:
   port: 9090
+mq:
+  namesrvAddr: 127.0.0.1:9876
+  producerEnable: false
+  consumerEnable: false

@@ -39,7 +39,12 @@
             <groupId>com.alibaba.rocketmq</groupId>
             <artifactId>rocketmq-all</artifactId>
             <version>3.2.6</version>
-            <type>pom</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.caucho</groupId>
+            <artifactId>hessian</artifactId>
+            <version>4.0.65</version>
         </dependency>
 
     </dependencies>
