@@ -16,7 +16,6 @@ import java.util.Date;
 public class DemoTest extends BaseTest {
     @Autowired
     private RedisCore redisCore;
-
     @Test
     public void a() {
         // 1.setString
@@ -49,4 +48,6 @@ public class DemoTest extends BaseTest {
         int i = demoMapper.updateByRecordSelective(demo2, example);
         System.out.println();
     }
+
+
 }
