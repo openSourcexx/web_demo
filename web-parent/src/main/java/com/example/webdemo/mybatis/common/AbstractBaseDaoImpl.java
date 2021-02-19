@@ -10,15 +10,13 @@ public abstract class AbstractBaseDaoImpl<T, D extends CommonMapper<T>> implemen
     private D mapper;
 
     @Override
-    public T insert(T record) {
-        mapper.insert(record);
-        return record;
+    public int insert(T record) {
+        return mapper.insert(record);
     }
 
     @Override
-    public T insertSelective(T record) {
-        mapper.insertSelective(record);
-        return record;
+    public int insertSelective(T record) {
+        return mapper.insertSelective(record);
     }
 
     @Override
@@ -65,25 +63,23 @@ public abstract class AbstractBaseDaoImpl<T, D extends CommonMapper<T>> implemen
     }
 
     @Override
-    public T updateByPrimaryKey(T record) {
-        mapper.updateByPrimaryKey(record);
-        return record;
+    public int updateByPrimaryKey(T record) {
+        return mapper.updateByPrimaryKey(record);
     }
 
     @Override
-    public T updateByPrimaryKeySelective(T record) {
-        mapper.updateByPrimaryKeySelective(record);
-        return record;
+    public int updateByPrimaryKeySelective(T record) {
+        return mapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
-    public void updateByPrimaryKeySelectiveList(List<T> recordList) {
-        mapper.updateByPrimaryKeySelectiveList(recordList);
+    public int updateByPrimaryKeySelectiveList(List<T> recordList) {
+        return mapper.updateByPrimaryKeySelectiveList(recordList);
     }
 
     @Override
-    public void updateByPrimaryKeyList(List<T> recordList) {
-        mapper.updateByPrimaryKeyList(recordList);
+    public int updateByPrimaryKeyList(List<T> recordList) {
+        return mapper.updateByPrimaryKeyList(recordList);
     }
 
     public D getMapper() {

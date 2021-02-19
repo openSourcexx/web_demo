@@ -10,7 +10,7 @@ public interface IBaseDao<T> {
      * @param record 数据
      * @return 数据
      */
-    T insert(T record);
+    int insert(T record);
 
     /**
      * 插入非null数据
@@ -18,7 +18,7 @@ public interface IBaseDao<T> {
      * @param record 数据
      * @return 数据
      */
-    T insertSelective(T record);
+    int insertSelective(T record);
 
     /**
      * 批量插入，如果record中的主键值为null，则会使用数据库中的自增；如果数据库中未设置自增，则record中必须塞值，否则报错
@@ -91,7 +91,7 @@ public interface IBaseDao<T> {
      * @param record 数据
      * @return 修改的数据
      */
-    T updateByPrimaryKey(T record);
+    int updateByPrimaryKey(T record);
 
     /**
      * 根据record中的主键，非null字段被修改数据 record必须带主键
@@ -99,7 +99,7 @@ public interface IBaseDao<T> {
      * @param record 数据
      * @return 修改的数据
      */
-    T updateByPrimaryKeySelective(T record);
+    int updateByPrimaryKeySelective(T record);
 
     /**
      * 批量根据主键更新属性不为null的值
@@ -107,7 +107,7 @@ public interface IBaseDao<T> {
      *
      * @param recordList 记录
      */
-    void updateByPrimaryKeySelectiveList(List<T> recordList);
+    int updateByPrimaryKeySelectiveList(List<T> recordList);
 
     /**
      * 批量更新，null值会被更新
@@ -115,5 +115,5 @@ public interface IBaseDao<T> {
      *
      * @param recordList 记录
      */
-    void updateByPrimaryKeyList(List<T> recordList);
+    int updateByPrimaryKeyList(List<T> recordList);
 }

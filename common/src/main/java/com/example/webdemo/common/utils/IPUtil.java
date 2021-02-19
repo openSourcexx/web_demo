@@ -1,16 +1,17 @@
 package com.example.webdemo.common.utils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.Enumeration;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author admin
@@ -170,5 +171,28 @@ public class IPUtil {
 
         boolean ipAddress = mat.find();
         return ipAddress;
+    }
+
+    /**
+     * 获取机器编码
+     *
+     * @return machinePiece
+     */
+    public static long getMachineNum() {
+        long machinePiece;
+        StringBuilder sb = new StringBuilder();
+        Enumeration<NetworkInterface> e = null;
+        try {
+            e = NetworkInterface.getNetworkInterfaces();
+        } catch (SocketException e1) {
+            e1.printStackTrace();
+        }
+        while (e.hasMoreElements()) {
+            NetworkInterface ni = e.nextElement();
+            sb.append(ni.toString());
+        }
+        machinePiece = sb.toString()
+            .hashCode();
+        return machinePiece;
     }
 }

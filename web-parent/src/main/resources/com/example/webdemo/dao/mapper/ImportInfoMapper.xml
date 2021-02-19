@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.webdemo.dao.mapper.ImportInfoMapper">
+    <resultMap id="BaseResultMap" type="com.example.webdemo.beans.ImportInfo">
+        <id column="import_id" property="importId" jdbcType="VARCHAR"/>
+        <result column="serial_no" property="serialNo" jdbcType="VARCHAR"/>
+        <result column="attachment_id" property="attachmentId" jdbcType="VARCHAR"/>
+        <result column="biz_type" property="bizType" jdbcType="CHAR"/>
+        <result column="status" property="status" jdbcType="CHAR"/>
+        <result column="total_count" property="totalCount" jdbcType="INTEGER"/>
+        <result column="success_count" property="successCount" jdbcType="INTEGER"/>
+        <result column="fail_count" property="failCount" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    import_id, serial_no, attachment_id, biz_type, status, total_count, success_count,
+    fail_count, create_time, update_time
+  </sql>
+</mapper>

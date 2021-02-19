@@ -36,7 +36,7 @@
         </javaTypeResolver>
 
         <!-- 生成model类，targetPackage指定model类的包名， targetProject指定生成的model放在eclipse的哪个工程下面-->
-        <javaModelGenerator targetPackage="com.example.webdemo.beans" targetProject="src/main/java2">
+        <javaModelGenerator targetPackage="com.example.webdemo.beans" targetProject="src/main/java">
             <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
             <property name="enableSubPackages" value="false"/>
             <!-- 是否对model添加 构造函数 true添加，false不添加-->
@@ -48,7 +48,7 @@
         </javaModelGenerator>
 
         <!-- 生成MyBatis的Mapper.xml文件，targetPackage指定mapper.xml文件的包名， targetProject指定生成的mapper.xml放在eclipse的哪个工程下面 -->
-        <sqlMapGenerator targetPackage="com.example.webdemo.dao.mapper" targetProject="src/main/resources2">
+        <sqlMapGenerator targetPackage="com.example.webdemo.dao.mapper" targetProject="src/main/resources">
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
 
@@ -58,7 +58,7 @@
         </javaClientGenerator>
 
         <!-- 数据库表名及对应的Java模型类名 -->
-        <table tableName="t_demo" domainObjectName="DemoDo"
+        <table tableName="import_info" domainObjectName="ImportInfo"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"

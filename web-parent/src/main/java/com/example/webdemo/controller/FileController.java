@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.webdemo.service.biz.FileBiz;
+import com.example.webdemo.vo.request.BatchImportRequest;
 import com.example.webdemo.vo.request.FileRequest;
+import com.example.webdemo.vo.response.BatchImportResp;
 
 /**
  * 文件处理
@@ -22,12 +24,17 @@ public class FileController {
     private FileBiz fileBiz;
 
     @RequestMapping("/upload")
-    public void upload(MultipartFile file) {
-        fileBiz.upload(file);
+    public String upload(MultipartFile file) {
+        return fileBiz.upload(file);
     }
 
     @RequestMapping("/download")
     public byte[] download(@RequestBody FileRequest fileRequest) {
-        return fileBiz.download(fileRequest.getFileName());
+        return fileBiz.download(fileRequest.getFilePath());
+    }
+
+    @RequestMapping("/batchImport")
+    public BatchImportResp batchImport(@RequestBody BatchImportRequest request) {
+        return fileBiz.batchImport(request);
     }
 }

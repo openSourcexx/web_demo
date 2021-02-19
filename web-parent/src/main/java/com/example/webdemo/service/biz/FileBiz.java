@@ -2,6 +2,9 @@ package com.example.webdemo.service.biz;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.webdemo.vo.request.BatchImportRequest;
+import com.example.webdemo.vo.response.BatchImportResp;
+
 /**
  * 文件
  *
@@ -14,7 +17,7 @@ public interface FileBiz {
      *
      * @param file
      */
-    void upload(MultipartFile file);
+    String upload(MultipartFile file);
 
     /**
      * 下载文件
@@ -23,4 +26,6 @@ public interface FileBiz {
      * @return
      */
     byte[] download(String fileName);
+
+    BatchImportResp batchImport(BatchImportRequest request);
 }

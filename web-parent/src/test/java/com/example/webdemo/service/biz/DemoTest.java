@@ -1,13 +1,17 @@
 package com.example.webdemo.service.biz;
 
-import com.example.webdemo.beans.DemoDo;
-import com.example.webdemo.common.redis.RedisCore;
-import com.example.webdemo.common.utils.Demo;
-import com.example.webdemo.dao.mapper.DemoMapper;
+import java.util.Date;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Date;
+import com.example.webdemo.beans.DemoDo;
+import com.example.webdemo.beans.ImportInfo;
+import com.example.webdemo.common.redis.RedisCore;
+import com.example.webdemo.common.utils.Demo;
+import com.example.webdemo.common.utils.sequence.SequenceTool;
+import com.example.webdemo.dao.intf.ImportInfoDao;
+import com.example.webdemo.dao.mapper.DemoMapper;
 
 /**
  * @author tangaq
@@ -44,10 +48,19 @@ public class DemoTest extends BaseTest {
         DemoDo demo2 = new DemoDo();
         demo2.setAccount("dd");
         demo2.setUpdateTime(new Date());
-        // int i = demoMapper.updateByRecordSelective(demo);
-        int i = demoMapper.updateByRecordSelective(demo2, example);
+        int i = demoMapper.updateByPrimaryKeySelective(example);
         System.out.println();
     }
 
+    @Autowired
+    private ImportInfoDao importInfoDao;
 
+    @Test
+    public void c() {
+        ImportInfo i = new ImportInfo();
+        i.setImportId(SequenceTool.nextId());
+        i.setCreateTime(new Date());
+        i.setUpdateTime(new Date());
+        importInfoDao.insertSelective(i);
+    }
 }

@@ -21,6 +21,7 @@ public class DateUtil {
 
     /**
      * 获取当天开始时间
+     *
      * @param dt
      * @return
      */
@@ -40,6 +41,7 @@ public class DateUtil {
 
     /**
      * 获取当天结束时间
+     *
      * @param dt
      * @return
      */
@@ -227,6 +229,7 @@ public class DateUtil {
 
     /**
      * 获取2个时间间隔天数
+     *
      * @param before
      * @param after
      * @return
@@ -240,7 +243,7 @@ public class DateUtil {
             long time1 = cal.getTimeInMillis();
             cal.setTime(after);
             long time2 = cal.getTimeInMillis();
-            long between_days = (time2 - time1) /86400000L;
+            long between_days = (time2 - time1) / 86400000L;
             int result = Integer.parseInt(String.valueOf(between_days));
             return result;
         } catch (Exception e) {
@@ -252,6 +255,7 @@ public class DateUtil {
     /**
      * 日期转字符串
      * 默认YYYY-MM-dd。
+     *
      * @return String "YYYY-MM-dd"格式的日期字符串。
      */
     public static String getDate() {
@@ -270,6 +274,7 @@ public class DateUtil {
 
     /**
      * 时间戳转字符串时间
+     *
      * @param timeStamp 时间戳
      * @param format
      * @return
@@ -283,6 +288,7 @@ public class DateUtil {
 
     /**
      * 字符串时间转时间
+     *
      * @param dateStr 字符串时间
      * @param pattern 时间
      * @return
@@ -302,6 +308,7 @@ public class DateUtil {
 
     /**
      * 判断字符串是否日期时间格式
+     *
      * @param str
      * @param pattern 指定日期格式为四位年/两位月份/两位日期，注意yyyy/MM/dd区分大小写；
      * @return
@@ -332,7 +339,10 @@ public class DateUtil {
         System.out.println(DateUtil.getCurrentYearEndTime());
         System.out.println(DateUtil.getCurrentWeekDayStartTime());
         System.out.println(DateUtil.getCurrentWeekDayEndTime());
-        System.out.println(DateUtil.getDate(1547084941000l,"YYYY-MM-dd HH:mm:ss"));
+        System.out.println(DateUtil.getDate(1547084941000l, "YYYY-MM-dd HH:mm:ss"));
     }
 
+    public static Date getDate(String value) {
+        return getDate(value, DATE_FORMAT_2);
+    }
 }

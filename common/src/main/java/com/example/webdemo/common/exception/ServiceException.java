@@ -14,14 +14,17 @@ public class ServiceException extends RuntimeException {
         super(message);
     }
 
+    public ServiceException(String message, Throwable e) {
+        super(message, e);
+    }
+
     public ServiceException(String code, String message) {
         super(message);
         this.code = code;
     }
 
     public ServiceException(String code, String message, Throwable e) {
-        super(message,e);
+        super(message, e);
         this.code = code;
     }
-
 }
