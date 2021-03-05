@@ -20,6 +20,7 @@
         <module>common</module>
         <module>xxl-job</module>
         <module>activity</module>
+        <module>sofa</module>
     </modules>
 
     <properties>
