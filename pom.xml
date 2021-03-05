@@ -21,6 +21,7 @@
         <module>xxl-job</module>
         <module>activity</module>
         <module>sofa</module>
+        <module>framework</module>
     </modules>
 
     <properties>
@@ -58,6 +59,10 @@
                     <artifactId>spring-boot-starter-logging</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-expression</artifactId>
         </dependency>
 
         <dependency>
