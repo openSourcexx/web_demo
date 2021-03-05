@@ -37,7 +37,7 @@ public class RequestHandlerAspect {
         Method method = methodSignature.getMethod();
         // todo 获取方法上注解设置到报文
         RpcRequest rpcRequest = RpcRequest.Builder.getInstance()
-            .addSerialNo(AppParamUtil.getTransSerialNo())
+            .addIdemSerialNo(AppParamUtil.getTransSerialNo())
             .build();
 
         if (AppParamUtil.getRpcRequest() != null) {
