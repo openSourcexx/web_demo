@@ -22,6 +22,7 @@
         <module>activity</module>
         <module>sofa</module>
         <module>framework</module>
+        <module>desginemodal</module>
     </modules>
 
     <properties>
