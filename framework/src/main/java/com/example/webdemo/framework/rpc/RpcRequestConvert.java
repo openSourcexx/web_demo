@@ -1,6 +1,10 @@
 package com.example.webdemo.framework.rpc;
 
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
+
+import com.google.common.base.Splitter;
 
 /**
  * @author safe
@@ -52,10 +56,21 @@ public class RpcRequestConvert {
         if (StringUtils.isBlank(uriStr)) {
             return null;
         } else {
-            RpcRequest build = RpcRequest.Builder.getInstance()
-                .build();
+
+            RpcRequest.Builder build = RpcRequest.Builder.getInstance();
             // todo 解析url &
-            return build;
+            List<String> parameterList = Splitter.on("&")
+                .splitToList(uriStr);
+            for (String str : parameterList) {
+                List<String> header = Splitter.on("=")
+                    .splitToList(str);
+                if (SERIAL_NO.equals(header.get(0))) {
+                    build.addSerialNo(header.get(1));
+                } else if (IDEM_SERIAL_NO.equals(header.get(0))) {
+                    build.addIdemSerialNo(header.get(1));
+                }
+            }
+            return build.build();
         }
     }
 }

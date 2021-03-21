@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.example.webdemo.framework.config.FrameworkRpcConfig,\
+  com.example.webdemo.framework.config.WbMvcConfig

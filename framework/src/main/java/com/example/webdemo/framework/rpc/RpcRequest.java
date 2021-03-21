@@ -35,6 +35,11 @@ public class RpcRequest implements Serializable {
             return this;
         }
 
+        public Builder addSerialNo(String serialNo) {
+            this.instance.serialNo = serialNo;
+            return this;
+        }
+
         public Builder addIdemSerialNo(String idemSerialNo) {
             this.instance.idemSerialNo = idemSerialNo;
             return this;
