@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <!--
+    clr表示显示颜色,官方文档给出目前支持的颜色有blue,cyan,faint,green,magenta,red,yellow
+    %clr:由ColorConverter 进行处理
+    %d{yyyy-MM-dd HH:mm:ss.SSS}: 输出时间
+    ${LOG_LEVEL_PATTERN:-%5p}: 日志级别，并且使用5个字符靠左对齐
+    ${PID:- }:线程id
+    %15.15t:t线程 %15.15 如果线程名小于15个字符,则在左边填充空格.如果大于15个字符，则进行截断
+    %-40.40logger{39}: 日志输出者的名字,-40.40 : 如果线程名小于40个字符,则在右边填充空格.如果大于40个字符，则进行截断
+    %m:日志
+    %n:换行符
+    {LOG_EXCEPTION_CONVERSION_WORD:-%wEx}: 由ExtendedWhitespaceThrowableProxyConverter 进行处理 该类是在异常堆栈的打印过程中添加一些空格
+    -->
+    <property name="CONSOLE_LOG"
+              value="${CONSOLE_LOG:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(%t){magenta} %clr(%logger{39}){cyan}%clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <!--此日志appender是为开发使用，只配置最底级别，控制台输出的日志级别是大于或等于此级别的日志信息-->
+        <encoder>
+            <Pattern>${CONSOLE_LOG}</Pattern>
+            <!-- 设置字符集 -->
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+    <logger name="com.example" level="DEBUG"/>
+    <logger name="org.apache" level="INFO"/>
+    <logger name="org.springframework" level="INFO"/>
+    <logger name="org.quartz" level="WARN"/>
+
+</configuration>

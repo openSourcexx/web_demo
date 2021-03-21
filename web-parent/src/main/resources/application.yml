@@ -11,3 +11,7 @@ mq:
   namesrvAddr: 127.0.0.1:9876
   producerEnable: false
   consumerEnable: false
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    dao: debug
