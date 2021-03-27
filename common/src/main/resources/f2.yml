@@ -1,0 +1,6 @@
+mq:
+  # - 表示list
+  - topic: a1
+    tag: a1
+  - topic: b
+    tag: b

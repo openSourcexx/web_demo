@@ -16,6 +16,7 @@
         <httpcomponents.version>4.5.10</httpcomponents.version>
         <spring-retry.version>1.2.4.RELEASE</spring-retry.version>
         <velocity.version>1.7</velocity.version>
+        <hutool-core.version>5.5.8</hutool-core.version>
     </properties>
 
     <dependencies>
@@ -52,6 +53,16 @@
             <groupId>com.example</groupId>
             <artifactId>framework</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-core</artifactId>
+            <version>${hutool-core.version}</version>
         </dependency>
     </dependencies>
 </project>
